@@ -1,16 +1,11 @@
-﻿using Cerespirin.TreeDesireDeannoyance;
-using RimWorld;
-using System;
-using System.Collections.Generic;
+﻿using RimWorld;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 using Verse.AI;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
-	public class WorkGiver_AutoReplant : WorkGiver_Replant
+	public class WorkGiver_AutoReplant : WorkGiver_Scanner
 	{
 		public override ThingRequest PotentialWorkThingRequest
 		{
@@ -43,16 +38,14 @@ namespace Cerespirin.TreeDesireDeannoyance
 			MinifiedTree extractedPlant = t as MinifiedTree;
 			if (extractedPlant != null)
 			{
+				Designator_Replant designator = (Designator_Replant)extractedPlant.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
+
 				Area area = t.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
-				IEnumerable<IntVec3> cells = area.ActiveCells.Where(v => extractedPlant.InnerThing.def.CanEverPlantAt(v, t.Map, true));
+				IOrderedEnumerable<IntVec3> cells = area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position));
 
 				foreach (IntVec3 cell in cells)
 				{
-					//if (ReservationUtility.HasReserved(pawn, cell))
-					{
-						Blueprint_Install blueprint = GenConstruct.PlaceBlueprintForInstall(extractedPlant, cell, pawn.Map, Rot4.North, Faction.OfPlayer);
-						return base.JobOnThing(pawn, blueprint, forced);
-					}
+					designator.DesignateSingleCell(cell);
 				}
 			}
 			return null;
