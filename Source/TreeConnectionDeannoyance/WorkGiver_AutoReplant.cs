@@ -30,18 +30,16 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 		{
+			Log.Message("WorkGiver_AutoReplant.JobOnThing called.");
 			MinifiedTree extractedPlant = t as MinifiedTree;
 			if (extractedPlant != null)
 			{
+				Log.Message("WorkGiver_AutoReplant.JobOnThing extractedPlant not null.");
 				Designator_Replant designator = (Designator_Replant)extractedPlant.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
 
 				Area area = t.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
-				IOrderedEnumerable<IntVec3> cells = area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position));
 
-				foreach (IntVec3 cell in cells)
-				{
-					designator.DesignateSingleCell(cell);
-				}
+				designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
 			}
 			return null;
 		}
