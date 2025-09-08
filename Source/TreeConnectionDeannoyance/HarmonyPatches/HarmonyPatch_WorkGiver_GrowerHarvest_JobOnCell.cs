@@ -32,7 +32,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 					}
 					else
 					{
-						Log.Message("[TreeDesireDeannoyance] HarmonyPatch_WorkGiver_GrowerHarvest_JobOnCell: Postfix changed job def.");
 						__result.def = JobDefOf.ExtractTree;
 						__result.targetA = firstTarget;
 						__result.targetQueueA = null;

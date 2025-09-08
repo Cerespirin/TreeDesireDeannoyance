@@ -17,7 +17,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				if (__result?.targetA.Thing?.def.plant?.IsTree ?? false)
 				{
-					Log.Message("[TreeDesireDeannoyance] HarmonyPatch_JobMaker_MakeJob: Postfix changed job def.");
 					__result.def = JobDefOf.ExtractTree;
 
 					if (!__result.targetA.Thing.Map.designationManager.HasMapDesignationOn(__result.targetA.Thing))
