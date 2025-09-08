@@ -12,7 +12,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public static void Postfix(ref Job __result)
 		{
-			if (!Current.Game.GetComponent<MyGameComponent>().extractTreesAggressively) return;
+			if (!Current.Game.GetComponent<MyGameComponent>().alwaysExtractTrees) return;
 
 			if (__result.def == JobDefOf.Harvest)
 			{

@@ -11,7 +11,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public static void Postfix(ref Job __result, IntVec3 targetA)
 		{
-			if (!Current.Game.GetComponent<MyGameComponent>().extractTreesAggressively) return;
+			if (!Current.Game.GetComponent<MyGameComponent>().alwaysExtractTrees) return;
 
 			if (__result.def == JobDefOf.CutPlant)
 			{
