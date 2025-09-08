@@ -10,7 +10,7 @@ using Verse.AI;
 
 namespace Cerespirin.TreeConnectionDeannoyance
 {
-	public class WorkGiver_AutoReplant : WorkGiver_Scanner
+	public class WorkGiver_AutoReplant : WorkGiver_Replant
 	{
 		public override ThingRequest PotentialWorkThingRequest
 		{
@@ -33,9 +33,29 @@ namespace Cerespirin.TreeConnectionDeannoyance
 			return false;
 		}
 
+		public override Job JobOnCell(Pawn pawn, IntVec3 cell, bool forced = false)
+		{
+			return base.JobOnCell(pawn, cell, forced);
+		}
+
 		public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 		{
-			return base.JobOnThing(pawn, t, forced);
+			MinifiedTree extractedPlant = t as MinifiedTree;
+			if (extractedPlant != null)
+			{
+
+
+				Zone zone = t.Map.zoneManager.AllZones.First(z => z.RenamableLabel == "Replant");
+
+				IntVec3 vec3 = zone.Cells.First(v => extractedPlant.def.CanEverPlantAt(v, t.Map, true));
+
+				//ReservationUtility.HasReserved
+
+				GenConstruct.PlaceBlueprintForInstall(extractedPlant, cell, pawn.Map, Rot4.North, Faction.OfPlayer);
+
+				return base.JobOnThing(pawn, t, forced);
+			}
+			return null;
 		}
 	}
 }
