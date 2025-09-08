@@ -22,7 +22,7 @@ namespace Cerespirin.TreeConnectionDeannoyance
 
 		public override bool ShouldSkip(Pawn pawn, bool forced = false)
 		{
-			if (!Current.Game.GetComponent<MyGameComponent>().alwaysExtractTrees)
+			if (!Current.Game.GetComponent<MyGameComponent>().autoReplantTrees)
 			{
 				return true;
 			}
