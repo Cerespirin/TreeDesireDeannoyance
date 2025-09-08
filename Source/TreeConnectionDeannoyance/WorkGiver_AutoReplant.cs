@@ -21,16 +21,11 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				return true;
 			}
-			if (pawn.Map.zoneManager.AllZones.First(z => z.label == "Replant") == null)
+			if (pawn.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant") == null)
 			{
 				return true;
 			}
 			return false;
-		}
-
-		public override Job JobOnCell(Pawn pawn, IntVec3 cell, bool forced = false)
-		{
-			return base.JobOnCell(pawn, cell, forced);
 		}
 
 		public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
