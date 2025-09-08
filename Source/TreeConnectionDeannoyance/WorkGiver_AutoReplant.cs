@@ -44,7 +44,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			if (extractedPlant != null)
 			{
 				Zone zone = t.Map.zoneManager.AllZones.First(z => z.RenamableLabel == "Replant");
-				var cells = zone.Cells.Where(v => extractedPlant.def.CanEverPlantAt(v, t.Map, true));
+				var cells = zone.Cells.Where(v => extractedPlant.InnerThing.def.CanEverPlantAt(v, t.Map, true));
 
 				foreach (IntVec3 cell in cells)
 				{
