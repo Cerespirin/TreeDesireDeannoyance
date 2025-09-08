@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Defs>
+	<WorkGiverDef ParentName="Replant">
+		<defName>TreeDesireDeannoyance_AutoReplant</defName>
+		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_AutoReplant</giverClass>
+		<priorityInType>59</priorityInType>
+	</WorkGiverDef>
+</Defs>
