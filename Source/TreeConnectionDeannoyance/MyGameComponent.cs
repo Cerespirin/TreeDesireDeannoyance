@@ -11,7 +11,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override void ExposeData()
 		{
-			Scribe_Values.Look(ref alwaysExtractTrees, "TreeDesireDeannoyance_ExtractTreesAggressively");
+			Scribe_Values.Look(ref alwaysExtractTrees, "TreeDesireDeannoyance_AlwaysExtractTrees");
 			Scribe_Values.Look(ref alwaysExtractTrees, "TreeDesireDeannoyance_AutoReplantTrees");
 		}
 	}
