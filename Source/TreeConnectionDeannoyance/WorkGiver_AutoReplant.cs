@@ -51,7 +51,7 @@ namespace Cerespirin.TreeConnectionDeannoyance
 
 				//ReservationUtility.HasReserved
 
-				GenConstruct.PlaceBlueprintForInstall(extractedPlant, cell, pawn.Map, Rot4.North, Faction.OfPlayer);
+				GenConstruct.PlaceBlueprintForInstall(extractedPlant, vec3, pawn.Map, Rot4.North, Faction.OfPlayer);
 
 				return base.JobOnThing(pawn, t, forced);
 			}
