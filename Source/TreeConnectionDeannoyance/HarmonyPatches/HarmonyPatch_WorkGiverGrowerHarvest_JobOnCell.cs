@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using System.Collections.Generic;
 using System.Linq;
 using Verse;
 using Verse.AI;
@@ -8,7 +7,7 @@ using Verse.AI;
 namespace Cerespirin.TreeDesireDeannoyance
 {
 	[HarmonyPatch(typeof(WorkGiver_GrowerHarvest), nameof(WorkGiver_GrowerHarvest.JobOnCell))]
-	public static class HarmonyPatch_WorkGiver_GrowerHarvest_JobOnCell
+	public static class HarmonyPatch_WorkGiverGrowerHarvest_JobOnCell
 	{
 		public static void Postfix(ref Job __result)
 		{
