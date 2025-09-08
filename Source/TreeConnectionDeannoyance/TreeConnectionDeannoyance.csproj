@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HarmonyPatches\HarmonyPatch_JobMaker_MakeJob.cs" />
-    <Compile Include="HarmonyPatches\HarmonyPatch_Job_GetTargetQueue.cs" />
+    <Compile Include="HarmonyPatches\HarmonyPatch_WorkGiver_GrowerHarvest_JobOnCell.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_Playsettings_DoPlaySettingsGlobalControls.cs" />
     <Compile Include="MyGameComponent.cs" />
     <Compile Include="MyStaticConstructor.cs" />
