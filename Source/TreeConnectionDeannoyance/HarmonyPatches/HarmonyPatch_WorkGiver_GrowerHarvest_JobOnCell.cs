@@ -21,40 +21,32 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 				if (firstTarget == null) return;
 
-				int toStart = __result.targetQueueA.Count;
-
 				if (firstTarget.Thing.def.plant.IsTree)
 				{
 					// CalculateWantedPlantDef can return null!
 					ThingDef wantedPlantDef = WorkGiver_Grower.CalculateWantedPlantDef(firstTarget.Cell, firstTarget.Thing.Map);
-					IEnumerable<LocalTargetInfo> newQueue = __result.targetQueueA.Where(t => t.Thing.def.plant.IsTree);
 
 					if (wantedPlantDef != null && firstTarget.Thing.def == wantedPlantDef)
 					{
-						newQueue = newQueue.Where(t => t.Thing.def == wantedPlantDef);
+						__result.targetQueueA = __result.targetQueueA.Where(t => t.Thing.def == wantedPlantDef).ToList();
 					}
 					else
 					{
-						// This shouldn't need a null check unless there are things without defs, which I don't think exist.
-						newQueue = newQueue.Where(t => t.Thing.def != wantedPlantDef);
 						Log.Message("[TreeDesireDeannoyance] HarmonyPatch_WorkGiver_GrowerHarvest_JobOnCell: Postfix changed job def.");
 						__result.def = JobDefOf.ExtractTree;
-						
-						foreach (LocalTargetInfo target in newQueue)
+						__result.targetA = firstTarget;
+						__result.targetQueueA = null;
+
+						if (!firstTarget.Thing.Map.designationManager.HasMapDesignationOn(firstTarget.Thing))
 						{
-							if (!target.Thing.Map.designationManager.HasMapDesignationOn(target.Thing))
-							{
-								target.Thing.Map.designationManager.AddDesignation(new Designation(target.Thing, DesignationDefOf.ExtractTree));
-							}
+							firstTarget.Thing.Map.designationManager.AddDesignation(new Designation(firstTarget.Thing, DesignationDefOf.ExtractTree));
 						}
 					}
-					__result.targetQueueA = newQueue.ToList();
 				}
 				else
 				{
 					__result.targetQueueA = __result.targetQueueA.Where(t => !t.Thing.def.plant.IsTree).ToList();
 				}
-				Log.Message($"[TreeDesireDeannoyance] HarmonyPatch_WorkGiver_GrowerHarvest_JobOnCell: targetQueueA started witn {toStart} and ended with {__result.targetQueueA.Count}.");
 			}
 		}
 	}
