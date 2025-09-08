@@ -11,6 +11,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 {
 	internal static class MyHarmonyHelper
 	{
+		/*
 		private static List<CodeInstruction> GenerateCode(CodeInstruction referenceToTargetTree, ILGenerator ilGenerator)
 		{
 			Label label = ilGenerator.DefineLabel();
@@ -46,7 +47,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 			return instructionsAsList;
 		}
-
+		*/
 		internal static void PostfixHelper(ref Job job)
 		{
 			if (job == null || !Current.Game.GetComponent<MyGameComponent>().extractTreesAggressively) return;
