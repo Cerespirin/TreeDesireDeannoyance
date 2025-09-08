@@ -44,7 +44,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			if (extractedPlant != null)
 			{
 				Area area = t.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
-				var cells = area.ActiveCells.Where(v => extractedPlant.InnerThing.def.CanEverPlantAt(v, t.Map, true));
+				IEnumerable<IntVec3> cells = area.ActiveCells.Where(v => extractedPlant.InnerThing.def.CanEverPlantAt(v, t.Map, true));
 
 				foreach (IntVec3 cell in cells)
 				{
