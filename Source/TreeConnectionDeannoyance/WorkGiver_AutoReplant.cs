@@ -43,17 +43,17 @@ namespace Cerespirin.TreeConnectionDeannoyance
 			MinifiedTree extractedPlant = t as MinifiedTree;
 			if (extractedPlant != null)
 			{
-
-
 				Zone zone = t.Map.zoneManager.AllZones.First(z => z.RenamableLabel == "Replant");
+				var cells = zone.Cells.Where(v => extractedPlant.def.CanEverPlantAt(v, t.Map, true));
 
-				IntVec3 vec3 = zone.Cells.First(v => extractedPlant.def.CanEverPlantAt(v, t.Map, true));
-
-				//ReservationUtility.HasReserved
-
-				GenConstruct.PlaceBlueprintForInstall(extractedPlant, vec3, pawn.Map, Rot4.North, Faction.OfPlayer);
-
-				return base.JobOnThing(pawn, t, forced);
+				foreach (IntVec3 cell in cells)
+				{
+					if (ReservationUtility.HasReserved(pawn, cell))
+					{
+						Blueprint_Install blueprint = GenConstruct.PlaceBlueprintForInstall(extractedPlant, cell, pawn.Map, Rot4.North, Faction.OfPlayer);
+						return base.JobOnThing(pawn, blueprint, forced);
+					}
+				}
 			}
 			return null;
 		}
