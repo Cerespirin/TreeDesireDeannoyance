@@ -19,7 +19,11 @@ namespace Cerespirin.TreeDesireDeannoyance
 				{
 					Log.Message("[TreeDesireDeannoyance] HarmonyPatch_JobMaker_MakeJob: Postfix changed job def.");
 					__result.def = JobDefOf.ExtractTree;
-					__result.targetA.Thing.Map.designationManager.AddDesignation(new Designation(__result.targetA.Thing, DesignationDefOf.ExtractTree));
+
+					if (!__result.targetA.Thing.Map.designationManager.HasMapDesignationOn(__result.targetA.Thing))
+					{
+						__result.targetA.Thing.Map.designationManager.AddDesignation(new Designation(__result.targetA.Thing, DesignationDefOf.ExtractTree));
+					}
 				}
 			}
 		}
