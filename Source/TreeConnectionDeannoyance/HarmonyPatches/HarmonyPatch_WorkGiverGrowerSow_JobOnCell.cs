@@ -11,6 +11,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	[HarmonyPatch(typeof(WorkGiver_GrowerSow), nameof(WorkGiver_GrowerSow.JobOnCell))]
 	public static class HarmonyPatch_WorkGiverGrowerSow_JobOnCell
 	{
+		/*
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator ilGenerator)
 		{
 			FieldInfo targetField = typeof(PlantProperties).GetField(nameof(PlantProperties.blockAdjacentSow));
@@ -18,7 +19,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 			return MyHarmonyHelper.TranspilerHelper(new CodeInstruction(OpCodes.Ldloc_S, 4), instructions, ilGenerator, targetIndex, 2);
 		}
-
+		*/
 		public static void Postfix(ref Job __result)
 		{
 			MyHarmonyHelper.PostfixHelper(ref __result);
