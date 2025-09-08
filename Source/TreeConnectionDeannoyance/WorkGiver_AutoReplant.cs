@@ -43,8 +43,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 			MinifiedTree extractedPlant = t as MinifiedTree;
 			if (extractedPlant != null)
 			{
-				Zone zone = t.Map.zoneManager.AllZones.First(z => z.RenamableLabel == "Replant");
-				var cells = zone.Cells.Where(v => extractedPlant.InnerThing.def.CanEverPlantAt(v, t.Map, true));
+				Area area = t.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
+				var cells = area.ActiveCells.Where(v => extractedPlant.InnerThing.def.CanEverPlantAt(v, t.Map, true));
 
 				foreach (IntVec3 cell in cells)
 				{
