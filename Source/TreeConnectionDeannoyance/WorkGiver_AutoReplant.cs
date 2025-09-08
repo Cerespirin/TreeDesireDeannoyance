@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Verse;
 using Verse.AI;
 
-namespace Cerespirin.TreeConnectionDeannoyance
+namespace Cerespirin.TreeDesireDeannoyance
 {
 	public class WorkGiver_AutoReplant : WorkGiver_Replant
 	{
@@ -48,7 +48,7 @@ namespace Cerespirin.TreeConnectionDeannoyance
 
 				foreach (IntVec3 cell in cells)
 				{
-					if (ReservationUtility.HasReserved(pawn, cell))
+					//if (ReservationUtility.HasReserved(pawn, cell))
 					{
 						Blueprint_Install blueprint = GenConstruct.PlaceBlueprintForInstall(extractedPlant, cell, pawn.Map, Rot4.North, Faction.OfPlayer);
 						return base.JobOnThing(pawn, blueprint, forced);
