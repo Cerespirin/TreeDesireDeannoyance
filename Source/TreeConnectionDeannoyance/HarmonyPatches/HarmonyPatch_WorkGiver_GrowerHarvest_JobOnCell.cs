@@ -17,17 +17,17 @@ namespace Cerespirin.TreeDesireDeannoyance
 			if (__result.def == JobDefOf.Harvest)
 			{
 				// GetTargetQueue cannot return null, but can return an empty list!
-				LocalTargetInfo firstTarget = __result.GetTargetQueue(TargetIndex.A).FirstOrFallback(null);
+				LocalTargetInfo firstTarget = __result.targetQueueA.FirstOrFallback(null);
 
 				if (firstTarget == null) return;
 
-				int toStart = __result.GetTargetQueue(TargetIndex.A).Count;
+				int toStart = __result.targetQueueA.Count;
 
 				if (firstTarget.Thing.def.plant.IsTree)
 				{
 					// CalculateWantedPlantDef can return null!
 					ThingDef wantedPlantDef = WorkGiver_Grower.CalculateWantedPlantDef(firstTarget.Cell, firstTarget.Thing.Map);
-					IEnumerable<LocalTargetInfo> newQueue = __result.GetTargetQueue(TargetIndex.A).Where(t => t.Thing.def.plant.IsTree);
+					IEnumerable<LocalTargetInfo> newQueue = __result.targetQueueA.Where(t => t.Thing.def.plant.IsTree);
 
 					if (wantedPlantDef != null && firstTarget.Thing.def == wantedPlantDef)
 					{
