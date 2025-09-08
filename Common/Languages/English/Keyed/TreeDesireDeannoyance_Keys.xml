@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <LanguageData>
 	<TreeDesireDeannoyance_ToggleButton>Always extract trees</TreeDesireDeannoyance_ToggleButton>
+	<TreeDesireDeannoyance_ToggleReplant>Auto replant trees</TreeDesireDeannoyance_ToggleReplant>
 </LanguageData>
