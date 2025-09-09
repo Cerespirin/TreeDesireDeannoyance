@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
@@ -15,7 +14,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public override void ExposeData()
 		{
 			Scribe_Values.Look(ref alwaysExtractTrees, "TreeDesireDeannoyance_AlwaysExtractTrees");
-			Scribe_Values.Look(ref alwaysExtractTrees, "TreeDesireDeannoyance_AutoReplantTrees");
+			Scribe_Values.Look(ref autoReplantTrees, "TreeDesireDeannoyance_AutoReplantTrees");
 		}
 	}
 }
