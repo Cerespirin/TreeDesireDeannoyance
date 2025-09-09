@@ -45,7 +45,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 					designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
 				}
 				catch (Exception e)
-				{ 
+				{
 					Log.Warning(e.Message);
 					return null;
 				}
