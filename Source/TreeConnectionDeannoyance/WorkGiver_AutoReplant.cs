@@ -36,13 +36,14 @@ namespace Cerespirin.TreeDesireDeannoyance
 				if (InstallBlueprintUtility.ExistingBlueprintFor(t) == null) 
 				{
 					Designator_Replant designator = (Designator_Replant)t.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
+					Gizmo gizmo = t.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
 					MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
 					Area area = t.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
 
 					// I *still* can't believe that designators find their owners based on what the player has selected...
 					try
 					{
-						component.designatorOwners.Add(designator, t);
+						component.designatorOwners.Add(gizmo, t);
 						designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
 					}
 					catch (Exception e)
@@ -52,7 +53,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 					}
 					finally
 					{
-						component.designatorOwners.Remove(designator);
+						component.designatorOwners.Remove(gizmo);
 					}
 				}
 				return base.JobOnThing(pawn, InstallBlueprintUtility.ExistingBlueprintFor(t), forced);
