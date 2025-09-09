@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Verse;
 using Verse.AI;
@@ -22,7 +23,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				return true;
 			}
-			if (pawn.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant") == null)
+			if (pawn.Map.areaManager.GetLabeled("Replant") == null)
 			{
 				return true;
 			}
@@ -33,11 +34,14 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			if (t is MinifiedTree)
 			{
-				if (InstallBlueprintUtility.ExistingBlueprintFor(t) == null) 
+				if (InstallBlueprintUtility.ExistingBlueprintFor(t) == null)
 				{
+					IEnumerable<IntVec3> cells = t.Map.areaManager.GetLabeled("Replant").ActiveCells;
+
+					if (!cells.Any()) return null;
+
 					Gizmo gizmo = t.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
 					MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
-					Area area = t.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
 
 					// I *still* can't believe that designators find their owners based on what the player has selected...
 					try
@@ -45,7 +49,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 						Designator_Replant designator = gizmo as Designator_Replant;
 
 						component.designatorOwners.Add(gizmo, t);
-						designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
+						designator.DesignateSingleCell(cells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
 					}
 					catch (Exception e)
 					{
