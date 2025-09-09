@@ -1,4 +1,6 @@
-﻿using Verse;
+﻿using System;
+using System.Collections.Generic;
+using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
@@ -6,6 +8,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public bool alwaysExtractTrees = false;
 		public bool autoReplantTrees = false;
+		public Dictionary<Gizmo, Thing> designatorOwners = new Dictionary<Gizmo, Thing>();
 
 		public MyGameComponent(Game game) { }
 

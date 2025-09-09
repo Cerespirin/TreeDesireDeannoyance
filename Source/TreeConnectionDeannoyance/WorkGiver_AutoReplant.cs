@@ -36,10 +36,13 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				Log.Message("WorkGiver_AutoReplant.JobOnThing extractedPlant not null.");
 				Designator_Replant designator = (Designator_Replant)extractedPlant.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
+				MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
 
 				Area area = extractedPlant.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
 
+				component.designatorOwners.Add(designator, extractedPlant);
 				designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
+				component.designatorOwners.Remove(designator);
 			}
 			return null;
 		}
