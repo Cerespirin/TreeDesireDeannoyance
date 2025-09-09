@@ -36,10 +36,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				if (InstallBlueprintUtility.ExistingBlueprintFor(t) == null)
 				{
-					IEnumerable<IntVec3> cells = t.Map.areaManager.GetLabeled("Replant").ActiveCells;
-
-					if (!cells.Any()) return null;
-
 					Gizmo gizmo = t.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
 					MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
 
@@ -47,17 +43,18 @@ namespace Cerespirin.TreeDesireDeannoyance
 					try
 					{
 						Designator_Replant designator = gizmo as Designator_Replant;
-
 						component.designatorOwners.Add(gizmo, t);
-						designator.DesignateSingleCell(cells.Where(c1 => designator.CanDesignateCell(c1)).OrderBy(c2 => c2.DistanceToSquared(t.Position)).First());
+
+						IEnumerable<IntVec3> cells = t.Map.areaManager.GetLabeled("Replant").ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
+						if (!cells.Any()) return null;
+
+						designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(t.Position)).First());
 					}
-					/*
 					catch (Exception e)
 					{
 						Log.Warning(e.Message);
 						return null;
 					}
-					*/
 					finally
 					{
 						component.designatorOwners.Remove(gizmo);
