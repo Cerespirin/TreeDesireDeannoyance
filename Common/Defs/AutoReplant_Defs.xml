@@ -3,6 +3,6 @@
 	<WorkGiverDef ParentName="Replant">
 		<defName>TreeDesireDeannoyance_AutoReplant</defName>
 		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_AutoReplant</giverClass>
-		<priorityInType>59</priorityInType>
+		<priorityInType>49</priorityInType>
 	</WorkGiverDef>
 </Defs>
