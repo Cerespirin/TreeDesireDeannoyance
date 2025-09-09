@@ -38,25 +38,25 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 				if (blueprint == null) 
 				{
-				Designator_Replant designator = (Designator_Replant)extractedPlant.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
-				MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
-				Area area = extractedPlant.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
+					Designator_Replant designator = (Designator_Replant)extractedPlant.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
+					MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
+					Area area = extractedPlant.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
 
-				// I *still* can't believe that designators find their owners based on what the player has selected...
-				try
-				{
-					component.designatorOwners.Add(designator, extractedPlant);
-					designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
-				}
-				catch (Exception e)
-				{
-					Log.Warning(e.Message);
-					return null;
-				}
-				finally
-				{
-					component.designatorOwners.Remove(designator);
-				}
+					// I *still* can't believe that designators find their owners based on what the player has selected...
+					try
+					{
+						component.designatorOwners.Add(designator, extractedPlant);
+						designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
+					}
+					catch (Exception e)
+					{
+						Log.Warning(e.Message);
+						return null;
+					}
+					finally
+					{
+						component.designatorOwners.Remove(designator);
+					}
 				}
 				return base.JobOnThing(pawn, blueprint, forced);
 			}
