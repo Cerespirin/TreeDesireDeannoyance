@@ -31,19 +31,18 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 		{
-			MinifiedTree extractedPlant = t as MinifiedTree;
-			if (extractedPlant != null)
+			if (t is MinifiedTree)
 			{
-				if (InstallBlueprintUtility.ExistingBlueprintFor(extractedPlant) == null) 
+				if (InstallBlueprintUtility.ExistingBlueprintFor(t) == null) 
 				{
-					Designator_Replant designator = (Designator_Replant)extractedPlant.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
+					Designator_Replant designator = (Designator_Replant)t.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
 					MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
-					Area area = extractedPlant.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
+					Area area = t.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
 
 					// I *still* can't believe that designators find their owners based on what the player has selected...
 					try
 					{
-						component.designatorOwners.Add(designator, extractedPlant);
+						component.designatorOwners.Add(designator, t);
 						designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
 					}
 					catch (Exception e)
@@ -56,7 +55,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 						component.designatorOwners.Remove(designator);
 					}
 				}
-				return base.JobOnThing(pawn, InstallBlueprintUtility.ExistingBlueprintFor(extractedPlant), forced);
+				return base.JobOnThing(pawn, InstallBlueprintUtility.ExistingBlueprintFor(t), forced);
 			}
 			return null;
 		}
