@@ -5,7 +5,7 @@ using Verse.AI;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
-	public class WorkGiver_AutoReplant : WorkGiver_Scanner
+	public class WorkGiver_AutoReplant : WorkGiver_Replant
 	{
 		public override ThingRequest PotentialWorkThingRequest
 		{
@@ -37,12 +37,14 @@ namespace Cerespirin.TreeDesireDeannoyance
 				Log.Message("WorkGiver_AutoReplant.JobOnThing extractedPlant not null.");
 				Designator_Replant designator = (Designator_Replant)extractedPlant.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
 				MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
-
 				Area area = extractedPlant.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
 
+				// I *still* can't believe that designators find their owners based on what the player has selected...
 				component.designatorOwners.Add(designator, extractedPlant);
 				designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
 				component.designatorOwners.Remove(designator);
+
+				return base.JobOnThing(pawn, InstallBlueprintUtility.ExistingBlueprintFor(extractedPlant), forced);
 			}
 			return null;
 		}
