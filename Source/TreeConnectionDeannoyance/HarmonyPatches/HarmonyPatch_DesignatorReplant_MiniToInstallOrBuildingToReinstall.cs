@@ -11,13 +11,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public static MethodBase TargetMethod()
 		{
-			Type type = typeof(Designator_Install);
-			PropertyInfo prop = type.GetProperty("MiniToInstallOrBuildingToReinstall", BindingFlags.NonPublic | BindingFlags.Instance);
-			MethodInfo meth = prop.GetGetMethod();
-
-			Log.Message($"type: {type}, prop: {prop}, meth: {meth}.");
-
-			return meth;
+			return typeof(Designator_Install).GetProperty("MiniToInstallOrBuildingToReinstall", BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true);
 		}
 
 		public static bool Prefix(ref Thing __result, Gizmo __instance)
