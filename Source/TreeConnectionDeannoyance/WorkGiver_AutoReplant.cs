@@ -34,9 +34,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			MinifiedTree extractedPlant = t as MinifiedTree;
 			if (extractedPlant != null)
 			{
-				Blueprint_Install blueprint = InstallBlueprintUtility.ExistingBlueprintFor(extractedPlant);
-
-				if (blueprint == null) 
+				if (InstallBlueprintUtility.ExistingBlueprintFor(extractedPlant) == null) 
 				{
 					Designator_Replant designator = (Designator_Replant)extractedPlant.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
 					MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
@@ -58,7 +56,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 						component.designatorOwners.Remove(designator);
 					}
 				}
-				return base.JobOnThing(pawn, blueprint, forced);
+				return base.JobOnThing(pawn, InstallBlueprintUtility.ExistingBlueprintFor(extractedPlant), forced);
 			}
 			return null;
 		}
