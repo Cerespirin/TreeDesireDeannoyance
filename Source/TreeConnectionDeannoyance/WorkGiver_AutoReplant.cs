@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System;
 using System.Linq;
 using Verse;
 using Verse.AI;
@@ -45,11 +46,15 @@ namespace Cerespirin.TreeDesireDeannoyance
 					component.designatorOwners.Add(designator, extractedPlant);
 					designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
 				}
+				catch (Exception e)
+				{ 
+					Log.Warning(e.Message);
+					return null;
+				}
 				finally
 				{
 					component.designatorOwners.Remove(designator);
 				}
-
 				return base.JobOnThing(pawn, InstallBlueprintUtility.ExistingBlueprintFor(extractedPlant), forced);
 			}
 			return null;
