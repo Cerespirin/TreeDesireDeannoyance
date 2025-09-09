@@ -31,11 +31,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 		{
-			Log.Message("WorkGiver_AutoReplant.JobOnThing called.");
 			MinifiedTree extractedPlant = t as MinifiedTree;
 			if (extractedPlant != null)
 			{
-				Log.Message("WorkGiver_AutoReplant.JobOnThing extractedPlant not null.");
 				Designator_Replant designator = (Designator_Replant)extractedPlant.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
 				MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
 				Area area = extractedPlant.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
