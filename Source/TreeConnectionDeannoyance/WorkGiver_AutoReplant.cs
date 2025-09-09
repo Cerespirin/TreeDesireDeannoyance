@@ -51,11 +51,13 @@ namespace Cerespirin.TreeDesireDeannoyance
 						component.designatorOwners.Add(gizmo, t);
 						designator.DesignateSingleCell(cells.Where(c1 => designator.CanDesignateCell(c1)).OrderBy(c2 => c2.DistanceToSquared(t.Position)).First());
 					}
+					/*
 					catch (Exception e)
 					{
 						Log.Warning(e.Message);
 						return null;
 					}
+					*/
 					finally
 					{
 						component.designatorOwners.Remove(gizmo);
