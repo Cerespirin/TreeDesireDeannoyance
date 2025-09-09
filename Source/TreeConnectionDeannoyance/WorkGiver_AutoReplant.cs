@@ -49,7 +49,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 						Designator_Replant designator = gizmo as Designator_Replant;
 
 						component.designatorOwners.Add(gizmo, t);
-						designator.DesignateSingleCell(cells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
+						designator.DesignateSingleCell(cells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(t.Position)).First());
 					}
 					catch (Exception e)
 					{
