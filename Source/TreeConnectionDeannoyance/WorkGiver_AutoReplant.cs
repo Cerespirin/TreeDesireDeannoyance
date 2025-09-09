@@ -42,12 +42,12 @@ namespace Cerespirin.TreeDesireDeannoyance
 				// I *still* can't believe that designators find their owners based on what the player has selected...
 				try
 				{
-				component.designatorOwners.Add(designator, extractedPlant);
-				designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
+					component.designatorOwners.Add(designator, extractedPlant);
+					designator.DesignateSingleCell(area.ActiveCells.Where(v => designator.CanDesignateCell(v)).OrderBy(v => v.DistanceToSquared(pawn.Position)).First());
 				}
 				finally
 				{
-				component.designatorOwners.Remove(designator);
+					component.designatorOwners.Remove(designator);
 				}
 
 				return base.JobOnThing(pawn, InstallBlueprintUtility.ExistingBlueprintFor(extractedPlant), forced);
