@@ -34,6 +34,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 			MinifiedTree extractedPlant = t as MinifiedTree;
 			if (extractedPlant != null)
 			{
+				Blueprint_Install blueprint = InstallBlueprintUtility.ExistingBlueprintFor(extractedPlant);
+
+				if (blueprint == null) 
+				{
 				Designator_Replant designator = (Designator_Replant)extractedPlant.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
 				MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
 				Area area = extractedPlant.Map.areaManager.AllAreas.First(z => z.RenamableLabel == "Replant");
@@ -53,7 +57,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 				{
 					component.designatorOwners.Remove(designator);
 				}
-				return base.JobOnThing(pawn, InstallBlueprintUtility.ExistingBlueprintFor(extractedPlant), forced);
+				}
+				return base.JobOnThing(pawn, blueprint, forced);
 			}
 			return null;
 		}
