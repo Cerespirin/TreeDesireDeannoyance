@@ -15,11 +15,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override bool ShouldSkip(Pawn pawn, bool forced = false)
 		{
-			if (pawn.Map.areaManager.GetLabeled("Forage") == null)
-			{
-				return true;
-			}
-			return false;
+			return pawn.Map.areaManager.GetLabeled("Forage") == null;
 		}
 
 		public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
