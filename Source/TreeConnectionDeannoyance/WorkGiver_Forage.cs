@@ -27,7 +27,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			if (t.def.plant?.isStump ?? false)
 			{
-				if (pawn.Map.areaManager.GetLabeled("Forage") != null) 
+				if (pawn.Map.areaManager.GetLabeled("Forage")?.InnerGrid[t.Map.cellIndices.CellToIndex(t.Position)] ?? false)
 				{
 					if (t.Map.designationManager.HasMapDesignationOn(t))
 					{
