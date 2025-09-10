@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Defs>
+	<WorkGiverDef ParentName="PlantsCut">
+		<defName>TreeDesireDeannoyance_Forage</defName>
+		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_Forage</giverClass>
+	</WorkGiverDef>
+</Defs>
