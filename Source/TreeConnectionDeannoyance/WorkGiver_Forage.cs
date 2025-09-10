@@ -1,4 +1,6 @@
 ﻿using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
 using Verse;
 using Verse.AI;
 
@@ -27,14 +29,17 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			if (t.def.plant?.isStump ?? false)
 			{
-				if (pawn.Map.areaManager.GetLabeled("Forage")?[t.Position] ?? false)
+				Area area = pawn.Map.areaManager.GetLabeled("Forage");
+				IEnumerable<Thing> stumps = pawn.Map.listerThings.AllThings.Where(t2 => t2.def.plant?.isStump ?? false && area[t2.Position]);
+
+				foreach (Thing stump in stumps)
 				{
-					if (t.Map.designationManager.HasMapDesignationOn(t))
+					if (stump.Map.designationManager.HasMapDesignationOn(stump))
 					{
-						t.Map.designationManager.AddDesignation(new Designation(t, DesignationDefOf.CutPlant));
+						stump.Map.designationManager.AddDesignation(new Designation(stump, DesignationDefOf.CutPlant));
 					}
-					return base.JobOnThing(pawn, t, forced);
 				}
+				return base.JobOnThing(pawn, stumps.OrderBy(t3 => t3.Position.DistanceToSquared(pawn.Position)).First(), forced);
 			}
 			return null;
 		}
