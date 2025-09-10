@@ -27,7 +27,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 				foreach (Thing stump in stumps)
 				{
-					if (stump.Map.designationManager.HasMapDesignationOn(stump))
+					if (!stump.Map.designationManager.HasMapDesignationOn(stump))
 					{
 						stump.Map.designationManager.AddDesignation(new Designation(stump, DesignationDefOf.CutPlant));
 					}
