@@ -3,5 +3,5 @@
 	<WorkGiverDef ParentName="PlantsCut">
 		<defName>TreeDesireDeannoyance_Forage</defName>
 		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_Forage</giverClass>
-</WorkGiverDef>
+	</WorkGiverDef>
 </Defs>
