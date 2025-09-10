@@ -8,12 +8,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 {
 	public class WorkGiver_Forage : WorkGiver_PlantsCut
 	{
-		public override ThingRequest PotentialWorkThingRequest
+		public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
 		{
-			get
-			{
-				return ThingRequest.ForGroup(ThingRequestGroup.Plant);
-			}
+			return pawn.Map.listerThings.AllThings.Where(t => t.def.plant?.isStump ?? false && pawn.Map.areaManager.GetLabeled("Forage")[t.Position]);
 		}
 
 		public override bool ShouldSkip(Pawn pawn, bool forced = false)
