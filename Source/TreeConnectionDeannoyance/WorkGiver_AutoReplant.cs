@@ -23,7 +23,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				return true;
 			}
-			if (pawn.Map.areaManager.GetLabeled("Replant") == null)
+			if (pawn.Map.GetAutoReplantArea() == null)
 			{
 				return true;
 			}

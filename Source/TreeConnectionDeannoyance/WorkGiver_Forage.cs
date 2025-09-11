@@ -15,14 +15,14 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override bool ShouldSkip(Pawn pawn, bool forced = false)
 		{
-			return pawn.Map.areaManager.GetLabeled("Forage") == null;
+			return pawn.Map.GetForageArea() == null;
 		}
 
 		public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 		{
 			if (t.def.plant?.isStump ?? false)
 			{
-				Area area = pawn.Map.areaManager.GetLabeled("Forage");
+				Area area = pawn.Map.GetForageArea();
 				IEnumerable<Thing> stumps = pawn.Map.listerThings.AllThings.Where(t2 => (t2.def.plant?.isStump ?? false) && area[t2.Position]);
 
 				foreach (Thing stump in stumps)
