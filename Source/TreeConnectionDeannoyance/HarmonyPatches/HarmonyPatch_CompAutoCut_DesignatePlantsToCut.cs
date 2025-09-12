@@ -32,7 +32,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				{
 					yield return instruction;
 					Log.Message("Yielding GetExtractSetting...");
-					yield return new CodeInstruction(OpCodes.Callvirt, (MethodInfo)instruction.operand == AccessTools.Method(typeof(MyHelper), nameof(MyHelper.GetExtractSetting)));
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MyHelper), nameof(MyHelper.GetExtractSetting)));
 					Log.Message("Yielding Stloc...");
 					yield return new CodeInstruction(OpCodes.Stloc_S, 130);
 				}
