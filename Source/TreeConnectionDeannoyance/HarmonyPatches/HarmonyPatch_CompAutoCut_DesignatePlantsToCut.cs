@@ -14,7 +14,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
 		{
 			List<CodeInstruction> instructionsAsList = instructions.ToList();
-
 			LocalBuilder extractSetting = generator.DeclareLocal(typeof(bool));
 
 			foreach (CodeInstruction instruction in instructionsAsList)
