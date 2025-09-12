@@ -34,7 +34,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 					yield return new CodeInstruction(OpCodes.Callvirt, (MethodInfo)instruction.operand == AccessTools.Method(typeof(MyHelper), nameof(MyHelper.GetExtractSetting)));
 					yield return new CodeInstruction(OpCodes.Stloc_S, 130);
 				}
-				if (instruction.opcode == OpCodes.Ldsfld && (Type)instruction.operand == AccessTools.Field(typeof(DesignationDefOf), nameof(DesignationDefOf.CutPlant)))
+				if (instruction.opcode == OpCodes.Ldsfld && (FieldInfo)instruction.operand == AccessTools.Field(typeof(DesignationDefOf), nameof(DesignationDefOf.CutPlant)))
 				{
 					// Overwrite this instruction with our own.
 					yield return new CodeInstruction(OpCodes.Ldloc_S, 4);
