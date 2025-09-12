@@ -31,13 +31,14 @@ namespace Cerespirin.TreeDesireDeannoyance
 					}
 					else
 					{
-						__result.def = JobDefOf.ExtractTree;
-						__result.targetA = firstTarget;
-						__result.targetQueueA = null;
-
 						if (!firstTarget.Thing.Map.designationManager.HasMapDesignationOn(firstTarget.Thing))
 						{
+							__result.def = JobDefOf.ExtractTree;
+							__result.targetA = firstTarget;
+							__result.targetQueueA = null;
+
 							firstTarget.Thing.Map.designationManager.AddDesignation(new Designation(firstTarget.Thing, DesignationDefOf.ExtractTree));
+							return;
 						}
 					}
 				}
