@@ -42,6 +42,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 					yield return new CodeInstruction(OpCodes.Ldloc_S, extractSetting.LocalIndex);
 					yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(HarmonyPatch_CompAutoCut_DesignatePlantsToCut), nameof(GetAppropriateDesignation)));
 				}
+				else
+				{
+					yield return instruction;
+				}
 			}
 		}
 
