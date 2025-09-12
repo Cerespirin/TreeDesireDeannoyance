@@ -22,12 +22,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 				if (firstTarget.Thing.IsRelevantToTreeLovers())
 				{
-					// CalculateWantedPlantDef can return null!
-					ThingDef wantedPlantDef = WorkGiver_Grower.CalculateWantedPlantDef(firstTarget.Cell, firstTarget.Thing.Map);
-
-					if (wantedPlantDef != null && firstTarget.Thing.def == wantedPlantDef)
+					if (((Plant)firstTarget.Thing).DeliberatelyCultivated())
 					{
-						__result.targetQueueA = __result.targetQueueA.Where(t => t.Thing.def == wantedPlantDef).ToList();
+						__result.targetQueueA = __result.targetQueueA.Where(t => t.Thing.def == firstTarget.Thing.def || !t.Thing.IsRelevantToTreeLovers()).ToList();
 					}
 					else
 					{
@@ -38,7 +35,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 							__result.targetQueueA = null;
 
 							firstTarget.Thing.Map.designationManager.AddDesignation(new Designation(firstTarget.Thing, DesignationDefOf.ExtractTree));
-							return;
 						}
 					}
 				}
