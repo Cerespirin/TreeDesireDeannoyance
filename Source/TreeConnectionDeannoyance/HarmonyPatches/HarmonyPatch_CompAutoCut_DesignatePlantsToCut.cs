@@ -15,9 +15,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
 		{
 			/* So what I am trying to do here is change
-			 * 
+			 *
 			 *		map.designationManager.AddDesignation(new Designation(plant, DesignationDefOf.CutPlant, null));
-			 *		
+			 *
 			 *	into
 			 *	
 			 *		if (plant.def.plant.treeLoversCareIfChopped)
@@ -54,7 +54,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 
 			/*
-			List<CodeInstruction> newInstructions = new List<CodeInstruction>() 
+			List<CodeInstruction> newInstructions = new List<CodeInstruction>()
 			{
 				// if (plant.def.plant.treeLoversCareIfChopped) {
 				new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), nameof(Thing.def))),
@@ -75,24 +75,15 @@ namespace Cerespirin.TreeDesireDeannoyance
 				// else
 			};
 			*/
-
-			instructionsAsList.InsertRange(instructionsAsList.IndexOf(targetEnd) + 1, new List<CodeInstruction> { new CodeInstruction(OpCodes.Nop).WithLabels(afterLabel) });
 			instructionsAsList.InsertRange(instructionsAsList.IndexOf(targetStart), newInstructions);
 
 			return instructionsAsList;
 		}
-	
+
 		public static DesignationDef GetAppropriateDesignation(Thing plant, bool alwaysExtract)
 		{
 			if (alwaysExtract && plant.def.plant.treeLoversCareIfChopped)
- 			{
- 				return DesignationDefOf.ExtractTree;
- 			}
- 			else
- 			{
- 				return DesignationDefOf.CutPlant;
- 			}
-
+			{
 		}
 	}
 }
