@@ -11,7 +11,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public override ThingRequest PotentialWorkThingRequest
 		{
-			get 
+			get
 			{
 				return ThingRequest.ForGroup(ThingRequestGroup.MinifiedThing);
 			}
