@@ -36,7 +36,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 					Log.Message("Yielding Stloc...");
 					yield return new CodeInstruction(OpCodes.Stloc_S, 130);
 				}
-				if (instruction.opcode == OpCodes.Ldsfld && (FieldInfo)instruction.operand == AccessTools.Field(typeof(DesignationDefOf), nameof(DesignationDefOf.CutPlant)))
+				else if (instruction.opcode == OpCodes.Ldsfld && (FieldInfo)instruction.operand == AccessTools.Field(typeof(DesignationDefOf), nameof(DesignationDefOf.CutPlant)))
 				{
 					// Overwrite this instruction with our own.
 					yield return new CodeInstruction(OpCodes.Ldloc_S, 4);
