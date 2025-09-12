@@ -20,7 +20,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 				if (firstTarget == null) return;
 
-				if (firstTarget.Thing.def.plant.IsTree)
+				if (firstTarget.Thing.def.plant.IsTree && firstTarget.Thing.def.plant.treeLoversCareIfChopped)
 				{
 					// CalculateWantedPlantDef can return null!
 					ThingDef wantedPlantDef = WorkGiver_Grower.CalculateWantedPlantDef(firstTarget.Cell, firstTarget.Thing.Map);
@@ -43,7 +43,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				}
 				else
 				{
-					__result.targetQueueA = __result.targetQueueA.Where(t => !t.Thing.def.plant.IsTree).ToList();
+					__result.targetQueueA = __result.targetQueueA.Where(t => !t.Thing.def.plant.IsTree || !t.Thing.def.plant.treeLoversCareIfChopped).ToList();
 				}
 			}
 		}
