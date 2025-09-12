@@ -13,16 +13,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
 		{
-			/* So what I am trying to do here is change
-			 *
-			 *		map.designationManager.AddDesignation(new Designation(plant, DesignationDefOf.CutPlant, null));
-			 *
-			 *	into
-			 *
-			 *		bool alwaysExtract = MyHelper.GetExtractSetting();
-			 *		(...)
-			 *		map.designationManager.AddDesignation(new Designation(plant, GetAppropriateDesignation(plant, alwaysExtract), null));
-			*/
 			List<CodeInstruction> instructionsAsList = instructions.ToList();
 
 			LocalBuilder extractSetting = generator.DeclareLocal(typeof(bool));
