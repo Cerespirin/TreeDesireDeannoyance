@@ -12,7 +12,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	[HarmonyPatch(typeof(CompAutoCut), nameof(CompAutoCut.DesignatePlantsToCut))]
 	public static class HarmonyPatch_CompAutoCut_DesignatePlantsToCut
 	{
-		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
 		{
 			/* So what I am trying to do here is change
 			 *
@@ -26,6 +26,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 			*/
 			List<CodeInstruction> instructionsAsList = instructions.ToList();
 
+			LocalBuilder extractSetting = generator.DeclareLocal(typeof(bool));
+
 			foreach (CodeInstruction instruction in instructionsAsList)
 			{
 				if (instruction.opcode == OpCodes.Stloc_0)
@@ -34,14 +36,14 @@ namespace Cerespirin.TreeDesireDeannoyance
 					Log.Message("Yielding GetExtractSetting...");
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MyHelper), nameof(MyHelper.GetExtractSetting)));
 					Log.Message("Yielding Stloc...");
-					yield return new CodeInstruction(OpCodes.Stloc_S, 130);
+					yield return new CodeInstruction(OpCodes.Stloc_S, extractSetting.LocalIndex);
 				}
 				else if (instruction.opcode == OpCodes.Ldsfld && (FieldInfo)instruction.operand == AccessTools.Field(typeof(DesignationDefOf), nameof(DesignationDefOf.CutPlant)))
 				{
 					// Overwrite this instruction with our own.
 					yield return new CodeInstruction(OpCodes.Ldloc_S, 4);
-					yield return new CodeInstruction(OpCodes.Ldloc_S, 130);
 					Log.Message("Yielding GetAppropriateDesignation...");
+					yield return new CodeInstruction(OpCodes.Ldloc_S, extractSetting.LocalIndex);
 					yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(HarmonyPatch_CompAutoCut_DesignatePlantsToCut), nameof(GetAppropriateDesignation)));
 				}
 			}
