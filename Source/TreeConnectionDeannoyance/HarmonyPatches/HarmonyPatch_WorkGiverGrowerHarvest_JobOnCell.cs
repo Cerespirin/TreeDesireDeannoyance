@@ -44,8 +44,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 				}
 				else
 				{
-					__result.targetQueueA = __result.targetQueueA.Where(t => !t.Thing.def.plant.IsTree || !t.Thing.def.plant.treeLoversCareIfChopped).ToList();
 				}
+				__result.targetQueueA = __result.targetQueueA.Where(t => !t.Thing.IsRelevantToTreeLovers()).ToList();
 			}
 		}
 	}
