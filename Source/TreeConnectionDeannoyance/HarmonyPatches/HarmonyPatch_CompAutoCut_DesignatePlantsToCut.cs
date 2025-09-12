@@ -12,45 +12,35 @@ namespace Cerespirin.TreeDesireDeannoyance
 	[HarmonyPatch(typeof(CompAutoCut), nameof(CompAutoCut.DesignatePlantsToCut))]
 	public static class HarmonyPatch_CompAutoCut_DesignatePlantsToCut
 	{
-		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
+		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
 			/* So what I am trying to do here is change
 			 *
 			 *		map.designationManager.AddDesignation(new Designation(plant, DesignationDefOf.CutPlant, null));
 			 *
 			 *	into
-			 *	
-			 *		if (plant.def.plant.treeLoversCareIfChopped)
-			 *		{
-			 *			map.designationManager.AddDesignation(new Designation(plant, DesignationDefOf.ExtractTree, null));
-			 *		}
-			 *		else
-			 *		{
-			 *			map.designationManager.AddDesignation(new Designation(plant, DesignationDefOf.CutPlant, null));
-			 *		}
+			 *
+			 *		bool alwaysExtract = MyHelper.GetExtractSetting();
+			 *		(...)
+			 *		map.designationManager.AddDesignation(new Designation(plant, GetAppropriateDesignation(plant, alwaysExtract), null));
 			*/
 			List<CodeInstruction> instructionsAsList = instructions.ToList();
-			CodeInstruction targetStart = null;
-			CodeInstruction targetEnd = null;
-			Label afterLabel = generator.DefineLabel();
 
 			foreach (CodeInstruction instruction in instructionsAsList)
 			{
-				if (instruction.opcode == OpCodes.Ldloc_0)
+				if (instruction.opcode == OpCodes.Stloc_0)
 				{
-					targetStart = instruction;
+					yield return instruction;
+					yield return new CodeInstruction(OpCodes.Callvirt, (MethodInfo)instruction.operand == AccessTools.Method(typeof(MyHelper), nameof(MyHelper.GetExtractSetting)));
+					yield return new CodeInstruction(OpCodes.Stloc_S, 130);
 				}
-				else if (instruction.opcode == OpCodes.Callvirt && (MethodInfo)instruction.operand == AccessTools.Method(typeof(DesignationManager), nameof(DesignationManager.AddDesignation)))
+				if (instruction.opcode == OpCodes.Ldsfld && (Type)instruction.operand == AccessTools.Field(typeof(DesignationDefOf), nameof(DesignationDefOf.CutPlant)))
 				{
-					targetEnd = instruction;
-					break;
+					// Overwrite this instruction with our own.
+					yield return new CodeInstruction(OpCodes.Ldloc_S, 4);
+					yield return new CodeInstruction(OpCodes.Ldloc_S, 130);
+					yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(HarmonyPatch_CompAutoCut_DesignatePlantsToCut), nameof(GetAppropriateDesignation)));
 				}
-			}
-
-			if (targetStart == null || targetEnd == null) 
-			{
-				Log.Error("[TreeDesireDeannoyance] HarmonyPatch_CompAutoCut_DesignatePlantsToCut: failed to find injection points.");
-				return instructions;
 			}
 
 			/*
@@ -75,15 +65,18 @@ namespace Cerespirin.TreeDesireDeannoyance
 				// else
 			};
 			*/
-			instructionsAsList.InsertRange(instructionsAsList.IndexOf(targetStart), newInstructions);
-
-			return instructionsAsList;
 		}
 
 		public static DesignationDef GetAppropriateDesignation(Thing plant, bool alwaysExtract)
 		{
 			if (alwaysExtract && plant.def.plant.treeLoversCareIfChopped)
 			{
+				return DesignationDefOf.ExtractTree;
+			}
+			else
+			{
+				return DesignationDefOf.CutPlant;
+			}
 		}
 	}
 }
