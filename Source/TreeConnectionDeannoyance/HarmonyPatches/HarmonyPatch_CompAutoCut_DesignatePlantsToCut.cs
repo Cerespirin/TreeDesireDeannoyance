@@ -31,7 +31,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 				if (instruction.opcode == OpCodes.Stloc_0)
 				{
 					yield return instruction;
+					Log.Message("Yielding GetExtractSetting...");
 					yield return new CodeInstruction(OpCodes.Callvirt, (MethodInfo)instruction.operand == AccessTools.Method(typeof(MyHelper), nameof(MyHelper.GetExtractSetting)));
+					Log.Message("Yielding Stloc...");
 					yield return new CodeInstruction(OpCodes.Stloc_S, 130);
 				}
 				if (instruction.opcode == OpCodes.Ldsfld && (FieldInfo)instruction.operand == AccessTools.Field(typeof(DesignationDefOf), nameof(DesignationDefOf.CutPlant)))
@@ -39,6 +41,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 					// Overwrite this instruction with our own.
 					yield return new CodeInstruction(OpCodes.Ldloc_S, 4);
 					yield return new CodeInstruction(OpCodes.Ldloc_S, 130);
+					Log.Message("Yielding GetAppropriateDesignation...");
 					yield return new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(HarmonyPatch_CompAutoCut_DesignatePlantsToCut), nameof(GetAppropriateDesignation)));
 				}
 			}
