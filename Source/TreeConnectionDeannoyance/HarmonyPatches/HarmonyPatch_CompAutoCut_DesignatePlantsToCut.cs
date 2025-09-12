@@ -40,7 +40,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public static DesignationDef GetAppropriateDesignation(Thing plant, bool alwaysExtract)
 		{
-			if (alwaysExtract && plant.def.plant.IsTree && plant.def.plant.treeLoversCareIfChopped)
+			if (alwaysExtract && plant.IsRelevantToTreeLovers())
 			{
 				return DesignationDefOf.ExtractTree;
 			}
