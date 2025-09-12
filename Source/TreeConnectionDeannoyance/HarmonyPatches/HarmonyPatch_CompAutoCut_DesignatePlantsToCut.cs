@@ -68,6 +68,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				// else
 			};
 			*/
+			Log.Message("Should be done yielding...");
 		}
 
 		public static DesignationDef GetAppropriateDesignation(Thing plant, bool alwaysExtract)
