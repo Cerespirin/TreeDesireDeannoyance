@@ -20,7 +20,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 				if (firstTarget == null) return;
 
-				if (firstTarget.Thing.def.plant.IsTree && firstTarget.Thing.def.plant.treeLoversCareIfChopped)
+				if (firstTarget.Thing.IsRelevantToTreeLovers())
 				{
 					// CalculateWantedPlantDef can return null!
 					ThingDef wantedPlantDef = WorkGiver_Grower.CalculateWantedPlantDef(firstTarget.Cell, firstTarget.Thing.Map);
