@@ -53,9 +53,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 				return instructions;
 			}
 
+			/*
 			List<CodeInstruction> newInstructions = new List<CodeInstruction>() 
 			{
-				/*
 				// if (plant.def.plant.treeLoversCareIfChopped) {
 				new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Thing), nameof(Thing.def))),
 				new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(ThingDef), nameof(ThingDef.plant))),
@@ -73,8 +73,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 				// }
 				new CodeInstruction(OpCodes.Br_S, afterLabel)
 				// else
-				*/
 			};
+			*/
 
 			instructionsAsList.InsertRange(instructionsAsList.IndexOf(targetEnd) + 1, new List<CodeInstruction> { new CodeInstruction(OpCodes.Nop).WithLabels(afterLabel) });
 			instructionsAsList.InsertRange(instructionsAsList.IndexOf(targetStart), newInstructions);
