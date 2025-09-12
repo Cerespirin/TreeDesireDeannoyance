@@ -13,16 +13,12 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			if (!Current.Game.GetComponent<MyGameComponent>().alwaysExtractTrees) return;
 
-			if (__result.def == JobDefOf.CutPlant)
+			if (__result.def == JobDefOf.CutPlant && __result.targetA.Thing.IsRelevantToTreeLovers())
 			{
-				if (__result?.targetA.Thing?.def.plant?.IsTree ?? false)
+				if (!__result.targetA.Thing.Map.designationManager.HasMapDesignationOn(__result.targetA.Thing))
 				{
 					__result.def = JobDefOf.ExtractTree;
-
-					if (!__result.targetA.Thing.Map.designationManager.HasMapDesignationOn(__result.targetA.Thing))
-					{
-						__result.targetA.Thing.Map.designationManager.AddDesignation(new Designation(__result.targetA.Thing, DesignationDefOf.ExtractTree));
-					}
+					__result.targetA.Thing.Map.designationManager.AddDesignation(new Designation(__result.targetA.Thing, DesignationDefOf.ExtractTree));
 				}
 			}
 		}
