@@ -22,8 +22,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			if (t.def.plant?.isStump ?? false)
 			{
-				Area area = pawn.Map.GetForageArea();
-				IEnumerable<Thing> stumps = pawn.Map.listerThings.AllThings.Where(t2 => (t2.def.plant?.isStump ?? false) && area[t2.Position]);
+				IEnumerable<Thing> stumps = pawn.Map.listerThings.AllThings.Where(t2 => (t2.def.plant?.isStump ?? false) && pawn.Map.GetForageArea()[t2.Position]);
 
 				foreach (Thing stump in stumps)
 				{
