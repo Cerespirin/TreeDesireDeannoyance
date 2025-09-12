@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HarmonyPatches\HarmonyPatch_DesignatorReplant_MiniToInstallOrBuildingToReinstall.cs" />
+    <Compile Include="HarmonyPatches\HarmonyPatch_CompAutoCut_DesignatePlantsToCut.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_JobMaker_MakeJob.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_WorkGiverGrowerHarvest_JobOnCell.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_Playsettings_DoPlaySettingsGlobalControls.cs" />
