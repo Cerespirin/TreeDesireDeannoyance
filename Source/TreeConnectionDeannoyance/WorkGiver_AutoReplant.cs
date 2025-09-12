@@ -45,7 +45,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 						Designator_Replant designator = gizmo as Designator_Replant;
 						component.designatorOwners.Add(gizmo, t);
 
-						IEnumerable<IntVec3> cells = t.Map.areaManager.GetLabeled("Replant").ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
+						IEnumerable<IntVec3> cells = t.Map.GetAutoReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
 						if (!cells.Any()) return null;
 
 						designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(t.Position)).First());
