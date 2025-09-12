@@ -68,6 +68,7 @@
     <Compile Include="HarmonyPatches\HarmonyPatch_JobMaker_MakeJob.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_WorkGiverGrowerHarvest_JobOnCell.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_Playsettings_DoPlaySettingsGlobalControls.cs" />
+    <Compile Include="MyMapComponent.cs" />
     <Compile Include="MyHelper.cs" />
     <Compile Include="MyGameComponent.cs" />
     <Compile Include="MyStaticConstructor.cs" />
