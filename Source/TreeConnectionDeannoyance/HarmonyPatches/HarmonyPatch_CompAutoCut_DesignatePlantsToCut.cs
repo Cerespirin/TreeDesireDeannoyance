@@ -68,7 +68,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(LocalTargetInfo), "op_Implicit", new Type[] { typeof(Thing) })),
 				new CodeInstruction(OpCodes.Ldsfld, AccessTools.Field(typeof(DesignationDefOf), nameof(DesignationDefOf.ExtractTree))),
 				new CodeInstruction(OpCodes.Ldnull),
-				new CodeInstruction(OpCodes.Newobj, typeof(Designator)),
+				new CodeInstruction(OpCodes.Newobj, typeof(Designation)),
 				new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(DesignationManager), nameof(DesignationManager.AddDesignation))),
 				// }
 				new CodeInstruction(OpCodes.Br_S, afterLabel)
