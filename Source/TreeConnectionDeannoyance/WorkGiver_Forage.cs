@@ -10,7 +10,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
 		{
-			return pawn.Map.listerThings.AllThings.Where(t => (t.def.plant?.isStump ?? false) && pawn.Map.GetForageArea()[t.Position]);
+			return pawn.Map.listerThings.AllThings.Where(t => (t.def.plant?.isStump ?? false) && (pawn.Map.GetForageArea()?[t.Position] ?? false));
 		}
 
 		public override bool ShouldSkip(Pawn pawn, bool forced = false)
@@ -22,7 +22,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			if (t.def.plant?.isStump ?? false)
 			{
-				IEnumerable<Thing> stumps = pawn.Map.listerThings.AllThings.Where(t2 => (t2.def.plant?.isStump ?? false) && pawn.Map.GetForageArea()[t2.Position]);
+				IEnumerable<Thing> stumps = pawn.Map.listerThings.AllThings.Where(t2 => (t2.def.plant?.isStump ?? false) && (pawn.Map.GetForageArea()?[t2.Position] ?? false));
 
 				foreach (Thing stump in stumps)
 				{
