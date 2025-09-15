@@ -31,10 +31,23 @@ namespace Cerespirin.TreeDesireDeannoyance
 			Widgets.EndGroup();
 		}
 
+		private void DrawPlantFilter(ref float curY, float width, float height, CompAutoCut autoCut)
+		{
+			Rect rect = new Rect(0f, curY, width, height);
+			ThingFilterUI.UIState state = plantFilterState;
+			ThingFilter autoCutFilter = autoCut.AutoCutFilter;
+			ThingFilter fixedAutoCutFilter = autoCut.GetFixedAutoCutFilter();
+			int openMask = 1;
+			IEnumerable<ThingDef> forceHiddenDefs = null;
+			Map map = autoCut.parent.Map;
+			ThingFilterUI.DoThingFilterConfigWindow(rect, state, autoCutFilter, fixedAutoCutFilter, openMask, forceHiddenDefs, this.HiddenSpecialThingFilters(), true, false, false, null, map);
+		}
+
 
 
 
 
 		private static readonly Vector2 WinSize = new Vector2(300f, 480f);
+		private ThingFilterUI.UIState plantFilterState = new ThingFilterUI.UIState();
 	}
 }
