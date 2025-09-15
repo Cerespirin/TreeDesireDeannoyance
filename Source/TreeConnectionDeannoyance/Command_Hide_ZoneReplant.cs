@@ -5,6 +5,7 @@ using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
+	[StaticConstructorOnStartup]
 	public class Command_Hide_ZoneReplant : Command_Hide
 	{
 		public Command_Hide_ZoneReplant(IHideable hideable) : base(hideable) { }
