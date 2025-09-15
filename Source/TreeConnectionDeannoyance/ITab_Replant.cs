@@ -27,8 +27,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			Rect rect = new Rect(0f, 0f, WinSize.x, WinSize.y).ContractedBy(10f);
 			Widgets.BeginGroup(rect);
 			float num = 0f;
-			this.DrawAutoCutOptions(ref num, rect.width, autoCut);
-			num += 4f;
 			this.DrawPlantFilter(ref num, rect.width, rect.height - num, autoCut);
 			Widgets.EndGroup();
 		}
