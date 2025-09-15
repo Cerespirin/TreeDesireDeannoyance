@@ -21,6 +21,11 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 		}
 
+		public override IEnumerable<InspectTabBase> GetInspectTabs()
+		{
+			return ITabs;
+		}
+
 		public override IEnumerable<Gizmo> GetGizmos() 
 		{
 			yield return new Command_Hide_ZoneReplant(this);
@@ -32,5 +37,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 			yield return DesignatorUtility.FindAllowedDesignator<Designator_ZoneAdd_Replant_Expand>();
 			yield break;
 		}
+
+		private static readonly ITab[] ITabs = new ITab[] 
+		{
+			new ITab_Replant()
+		};
 	}
 }
