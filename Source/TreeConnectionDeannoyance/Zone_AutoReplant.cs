@@ -17,7 +17,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			get
 			{
-				return Color.Lerp(new Color(1f, 0.85f, 0f), Color.gray, 0.5f).WithAlpha(0.09f);
+				return Color.Lerp(Random.ColorHSV(0.094f, 0.301f, 1, 1, 1, 1), Color.gray, 0.5f).WithAlpha(0.09f);
 			}
 		}
 	}
