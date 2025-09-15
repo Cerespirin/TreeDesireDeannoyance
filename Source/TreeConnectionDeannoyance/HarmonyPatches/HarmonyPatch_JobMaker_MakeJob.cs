@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using System;
+using UnityEngine;
 using Verse;
 using Verse.AI;
 
@@ -15,10 +16,15 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 			if (__result.def == JobDefOf.CutPlant && __result.targetA.Thing.IsRelevantToTreeLovers())
 			{
-				if (!__result.targetA.Thing.Map.designationManager.HasMapDesignationOn(__result.targetA.Thing))
+				DesignationManager designationManager = __result.targetA.Thing.Map.designationManager;
+				bool hasDesignation = designationManager.HasMapDesignationOn(__result.targetA.Thing);
+				if (!hasDesignation || designationManager.DesignationOn(__result.targetA.Thing, DesignationDefOf.ExtractTree) != null)
 				{
 					__result.def = JobDefOf.ExtractTree;
-					__result.targetA.Thing.Map.designationManager.AddDesignation(new Designation(__result.targetA.Thing, DesignationDefOf.ExtractTree));
+					if (!hasDesignation)
+					{
+						designationManager.AddDesignation(new Designation(__result.targetA.Thing, DesignationDefOf.ExtractTree));
+					}
 				}
 			}
 		}
