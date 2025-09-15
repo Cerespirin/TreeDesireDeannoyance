@@ -19,12 +19,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 			if (component.designatorOwners.TryGetValue(__instance, out Thing owner))
 			{
-				if (owner.DestroyedOrNull())
-				{
-					Log.Warning("[TreeDesireDeannoyance] HarmonyPatch_DesignatorReplant_MiniToInstallOrBuildingToReinstall: designatorOwners had null or destroyed owner. Fixing.");
-					component.designatorOwners.Remove(__instance);
-					return true;
-				}
 				__result = owner;
 				return false;
 			}

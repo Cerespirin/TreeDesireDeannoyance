@@ -11,7 +11,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public override ThingRequest PotentialWorkThingRequest
 		{
-			get 
+			get
 			{
 				return ThingRequest.ForGroup(ThingRequestGroup.MinifiedThing);
 			}
@@ -23,7 +23,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				return true;
 			}
-			if (pawn.Map.GetAutoReplantArea() == null)
+			if (pawn.Map.GetReplantArea() == null)
 			{
 				return true;
 			}
@@ -45,15 +45,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 						Designator_Replant designator = gizmo as Designator_Replant;
 						component.designatorOwners.Add(gizmo, t);
 
-						IEnumerable<IntVec3> cells = t.Map.areaManager.GetLabeled("Replant").ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
+						IEnumerable<IntVec3> cells = t.Map.GetReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
 						if (!cells.Any()) return null;
 
 						designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(t.Position)).First());
-					}
-					catch (Exception e)
-					{
-						Log.Warning(e.Message);
-						return null;
 					}
 					finally
 					{

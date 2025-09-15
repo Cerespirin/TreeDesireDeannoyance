@@ -20,30 +20,27 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 				if (firstTarget == null) return;
 
-				if (firstTarget.Thing.def.plant.IsTree)
+				if (firstTarget.Thing.IsRelevantToTreeLovers())
 				{
-					// CalculateWantedPlantDef can return null!
-					ThingDef wantedPlantDef = WorkGiver_Grower.CalculateWantedPlantDef(firstTarget.Cell, firstTarget.Thing.Map);
-
-					if (wantedPlantDef != null && firstTarget.Thing.def == wantedPlantDef)
+					if (((Plant)firstTarget.Thing).DeliberatelyCultivated())
 					{
-						__result.targetQueueA = __result.targetQueueA.Where(t => t.Thing.def == wantedPlantDef).ToList();
+						__result.targetQueueA = __result.targetQueueA.Where(t => t.Thing.def == firstTarget.Thing.def || !t.Thing.IsRelevantToTreeLovers()).ToList();
 					}
 					else
 					{
-						__result.def = JobDefOf.ExtractTree;
-						__result.targetA = firstTarget;
-						__result.targetQueueA = null;
-
 						if (!firstTarget.Thing.Map.designationManager.HasMapDesignationOn(firstTarget.Thing))
 						{
+							__result.def = JobDefOf.ExtractTree;
+							__result.targetA = firstTarget;
+							__result.targetQueueA = null;
+
 							firstTarget.Thing.Map.designationManager.AddDesignation(new Designation(firstTarget.Thing, DesignationDefOf.ExtractTree));
 						}
 					}
 				}
 				else
 				{
-					__result.targetQueueA = __result.targetQueueA.Where(t => !t.Thing.def.plant.IsTree).ToList();
+					__result.targetQueueA = __result.targetQueueA.Where(t => !t.Thing.IsRelevantToTreeLovers()).ToList();
 				}
 			}
 		}
