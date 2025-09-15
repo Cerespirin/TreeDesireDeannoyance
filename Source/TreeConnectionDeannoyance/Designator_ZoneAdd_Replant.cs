@@ -17,6 +17,14 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 		}
 
+		protected virtual bool ShowRightClickHideOptions
+		{
+			get
+			{
+				return true;
+			}
+		}
+
 		protected override Zone MakeNewZone()
 		{
 			return new Zone_AutoReplant(Find.CurrentMap.zoneManager);
