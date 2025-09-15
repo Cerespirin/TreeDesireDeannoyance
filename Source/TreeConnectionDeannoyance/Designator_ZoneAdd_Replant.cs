@@ -36,7 +36,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			defaultLabel = "TreeDesireDeannoyance_ZoneReplant".Translate();
 			defaultDesc = "TreeDesireDeannoyance_DesignatorReplantZoneDesc".Translate();
 			icon = ContentFinder<Texture2D>.Get("ZoneCreate_Replant", true);
-			//this.soundSucceeded = SoundDefOf.Designate_ZoneAdd_Growing;
+			soundSucceeded = SoundDefOf.Designate_ExtractTree;
 		}
 	}
 }
