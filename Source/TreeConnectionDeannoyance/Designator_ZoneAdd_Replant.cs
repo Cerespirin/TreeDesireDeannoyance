@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System.Collections.Generic;
 using UnityEngine;
 using Verse;
 
@@ -35,5 +36,23 @@ namespace Cerespirin.TreeDesireDeannoyance
 			icon = ContentFinder<Texture2D>.Get("ZoneCreate_Replant", true);
 			soundSucceeded = SoundDefOf.Designate_ExtractTree;
 		}
+
+		public override AcceptanceReport CanDesignateCell(IntVec3 c)
+		{
+			if (c.GetTerrain(Map).passability == Traversability.Impassable)
+			{
+				return false;
+			}
+			return base.CanDesignateCell(c);
+		}
+		/*
+		public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
+		{
+			get 
+			{
+				return base.RightClickFloatMenuOptions;
+			}
+		}
+		*/
 	}
 }
