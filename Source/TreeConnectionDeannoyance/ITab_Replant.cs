@@ -36,9 +36,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 		private void DrawReplantFilter(ref float curY, float width, float height, Zone_AutoReplant zone)
 		{
 			Rect rect = new Rect(0f, curY, width, height);
-			ThingFilter autoCutFilter = zone.ReplantFilter;
-			ThingFilter fixedAutoCutFilter = zone.FixedReplantFilter;
-			ThingFilterUI.DoThingFilterConfigWindow(rect, replantFilterState, autoCutFilter, fixedAutoCutFilter, 1, null, this.HiddenSpecialThingFilters());
+			ThingFilter replantFilter = zone.ReplantFilter;
+			ThingFilter fixedReplantFilter = zone.FixedReplantFilter;
+			ThingFilterUI.DoThingFilterConfigWindow(rect, replantFilterState, replantFilter, fixedReplantFilter, 1);
 		}
 
 
