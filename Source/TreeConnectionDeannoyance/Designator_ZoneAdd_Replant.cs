@@ -25,12 +25,12 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		protected override Zone MakeNewZone()
 		{
-			return new Zone_AutoReplant(Find.CurrentMap.zoneManager);
+			return new Zone_Replant(Find.CurrentMap.zoneManager);
 		}
 
 		public Designator_ZoneAdd_Replant()
 		{
-			zoneTypeToPlace = typeof(Zone_AutoReplant);
+			zoneTypeToPlace = typeof(Zone_Replant);
 			defaultLabel = "TreeDesireDeannoyance_ZoneReplant".Translate();
 			defaultDesc = "TreeDesireDeannoyance_DesignatorReplantZoneDesc".Translate();
 			icon = ContentFinder<Texture2D>.Get("ZoneCreate_Replant", true);

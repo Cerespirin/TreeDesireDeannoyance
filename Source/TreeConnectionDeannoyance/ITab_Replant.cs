@@ -9,7 +9,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 {
 	public class ITab_Replant : ITab
 	{
-		public Zone_AutoReplant SelZone => SelObject as Zone_AutoReplant;
+		public Zone_Replant SelZone => SelObject as Zone_Replant;
 
 		private IEnumerable<SpecialThingFilterDef> HiddenSpecialThingFilters
 		{
@@ -43,7 +43,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		protected override void FillTab()
 		{
-			Zone_AutoReplant autoCut = SelZone;
+			Zone_Replant autoCut = SelZone;
 			Rect rect = new Rect(0f, 0f, WinSize.x, WinSize.y).ContractedBy(10f);
 			Widgets.BeginGroup(rect);
 			float num = 0f;
@@ -51,7 +51,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			Widgets.EndGroup();
 		}
 
-		private void DrawReplantFilter(ref float curY, float width, float height, Zone_AutoReplant zone)
+		private void DrawReplantFilter(ref float curY, float width, float height, Zone_Replant zone)
 		{
 			Rect rect = new Rect(0f, curY, width, height);
 			ThingFilter replantFilter = zone.ReplantFilter;

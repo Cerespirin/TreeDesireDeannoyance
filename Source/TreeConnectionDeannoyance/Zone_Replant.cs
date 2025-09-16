@@ -7,8 +7,13 @@ using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
-	public class Zone_AutoReplant : Zone
+	public class Zone_Replant : Zone
 	{
+		public Zone_Replant(ZoneManager zoneManager) : base("TreeDesireDeannoyance_ZoneReplant".Translate(), zoneManager)
+		{
+			replantFilter = new ThingFilter();
+			replantFilter.CopyAllowancesFrom(DefaultAutoCutFilter);
+		}
 
 		public ThingFilter ReplantFilter
 		{
@@ -53,12 +58,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 		}
 
-		public Zone_AutoReplant(ZoneManager zoneManager) : base("TreeDesireDeannoyance_ZoneReplant".Translate(), zoneManager) 
-		{ 
-			replantFilter = new ThingFilter();
-			replantFilter.CopyAllowancesFrom(DefaultAutoCutFilter);
-		}
-
 		protected override Color NextZoneColor
 		{
 			get
@@ -70,7 +69,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public override void ExposeData()
 		{
 			base.ExposeData();
-			Scribe_Deep.Look<ThingFilter>(ref replantFilter, "replantFilter", Array.Empty<object>());
+			Scribe_Deep.Look(ref replantFilter, "replantFilter", Array.Empty<object>());
 		}
 
 		public override IEnumerable<InspectTabBase> GetInspectTabs()
