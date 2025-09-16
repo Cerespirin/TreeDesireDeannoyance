@@ -29,27 +29,29 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			if (t is MinifiedTree)
 			{
-				Blueprint_Install blueprint = InstallBlueprintUtility.ExistingBlueprintFor(t);
-				if (blueprint != null) { return base.JobOnThing(pawn, blueprint, forced); }
-
-				Gizmo gizmo = t.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
-				MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
-				Designator_Replant designator = (Designator_Replant)gizmo;
-
-				// I *still* can't believe that designators find their owners based on what the player has selected...
-				try
+				if (InstallBlueprintUtility.ExistingBlueprintFor(t) == null)
 				{
-					component.designatorOwners.Add(gizmo, t);
+					Gizmo gizmo = t.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
+					MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
+					Designator_Replant designator = (Designator_Replant)gizmo;
 
-					IEnumerable<IntVec3> cells = MyHelper.GetReplantCells(t, designator); //t.Map.GetReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
-					if (!cells.Any()) { return null; }
+					// I *still* can't believe that designators find their owners based on what the player has selected...
+					try
+					{
+						component.designatorOwners.Add(gizmo, t);
 
-					designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(t.Position)).First());
+						IEnumerable<IntVec3> cells = MyHelper.GetReplantCells(t, designator); //t.Map.GetReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
+						if (!cells.Any()) { return null; }
+
+						designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(t.Position)).First());
+					}
+					finally
+					{
+						component.designatorOwners.Remove(gizmo);
+					}
 				}
-				finally
-				{
-					component.designatorOwners.Remove(gizmo);
-				}
+				return base.JobOnThing(pawn, InstallBlueprintUtility.ExistingBlueprintFor(t), forced);
+
 			}
 			return null;
 		}
