@@ -9,6 +9,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 {
 	public class ITab_Replant : ITab
 	{
+		public Zone_AutoReplant SelZone => SelObject as Zone_AutoReplant;
+
 		public ITab_Replant()
 		{
 			size = WinSize;
@@ -34,13 +36,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 		private void DrawPlantFilter(ref float curY, float width, float height, CompAutoCut autoCut)
 		{
 			Rect rect = new Rect(0f, curY, width, height);
-			ThingFilterUI.UIState state = plantFilterState;
-			ThingFilter autoCutFilter = autoCut.AutoCutFilter;
-			ThingFilter fixedAutoCutFilter = autoCut.GetFixedAutoCutFilter();
-			int openMask = 1;
-			IEnumerable<ThingDef> forceHiddenDefs = null;
-			Map map = autoCut.parent.Map;
-			ThingFilterUI.DoThingFilterConfigWindow(rect, state, autoCutFilter, fixedAutoCutFilter, openMask, forceHiddenDefs, this.HiddenSpecialThingFilters(), true, false, false, null, map);
+			ThingFilter autoCutFilter = SelZone.ReplantFilter;
+			ThingFilter fixedAutoCutFilter = SelZone.FixedReplantFilter;
+			ThingFilterUI.DoThingFilterConfigWindow(rect, replantFilterState, autoCutFilter, fixedAutoCutFilter, 1, null, this.HiddenSpecialThingFilters());
 		}
 
 
