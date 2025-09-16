@@ -5,4 +5,10 @@
 		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_AutoReplant</giverClass>
 		<priorityInType>49</priorityInType>
 	</WorkGiverDef>
+
+	<WorkGiverDef ParentName="GrowerHarvest">
+		<defName>TreeDesireDeannoyance_ReplantHarvest</defName>
+		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_ReplantHarvest</giverClass>
+		<priorityInType>99</priorityInType>
+	</WorkGiverDef>
 </Defs>

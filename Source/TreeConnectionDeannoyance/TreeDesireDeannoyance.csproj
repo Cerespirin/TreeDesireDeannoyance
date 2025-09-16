@@ -75,6 +75,7 @@
     <Compile Include="Replant\Command_Hide_ZoneReplant.cs" />
     <Compile Include="Replant\ITab_Replant.cs" />
     <Compile Include="Replant\Zone_Replant.cs" />
+    <Compile Include="WorkGiver_ReplantHarvest.cs" />
     <Compile Include="WorkGiver_Forage.cs" />
     <Compile Include="WorkGiver_AutoReplant.cs" />
   </ItemGroup>
