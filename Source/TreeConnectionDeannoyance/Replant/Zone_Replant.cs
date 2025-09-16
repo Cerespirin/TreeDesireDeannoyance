@@ -25,22 +25,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 		}
 
-		public ThingFilter FixedReplantFilter
-		{
-			get
-			{
-				if (replantFilterFixed == null)
-				{
-					replantFilterFixed = new ThingFilter();
-					foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable))
-					{
-						replantFilterFixed.SetAllow(thingDef, true);
-					}
-				}
-				return replantFilterFixed;
-			}
-		}
-
 		public ThingFilter DefaultReplantFilter
 		{
 			get
@@ -57,6 +41,22 @@ namespace Cerespirin.TreeDesireDeannoyance
 					}
 				}
 				return replantFilterDefault;
+			}
+		}
+
+		public ThingFilter FixedReplantFilter
+		{
+			get
+			{
+				if (replantFilterFixed == null)
+				{
+					replantFilterFixed = new ThingFilter();
+					foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable))
+					{
+						replantFilterFixed.SetAllow(thingDef, true);
+					}
+				}
+				return replantFilterFixed;
 			}
 		}
 
@@ -80,7 +80,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			return ITabs;
 		}
 
-		public override IEnumerable<Gizmo> GetGizmos() 
+		public override IEnumerable<Gizmo> GetGizmos()
 		{
 			yield return new Command_Hide_ZoneReplant(this);
 			foreach (Gizmo gizmo in base.GetGizmos()) { yield return gizmo; }
@@ -89,10 +89,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public override IEnumerable<Gizmo> GetZoneAddGizmos()
 		{
 			yield return DesignatorUtility.FindAllowedDesignator<Designator_ZoneAdd_Replant_Expand>();
-			yield break;
 		}
 
-		private static readonly ITab[] ITabs = new ITab[] 
+		private static readonly ITab[] ITabs = new ITab[]
 		{
 			new ITab_Replant()
 		};
