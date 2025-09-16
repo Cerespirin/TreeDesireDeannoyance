@@ -22,10 +22,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				return true;
 			}
-			if (pawn.Map.GetReplantArea() == null)
-			{
-				return true;
-			}
 			return false;
 		}
 
@@ -41,10 +37,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 					// I *still* can't believe that designators find their owners based on what the player has selected...
 					try
 					{
-						Designator_Replant designator = gizmo as Designator_Replant;
+						Designator_Replant designator = (Designator_Replant)gizmo;
 						component.designatorOwners.Add(gizmo, t);
 
-						IEnumerable<IntVec3> cells = t.Map.GetReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
+						IEnumerable<IntVec3> cells = MyHelper.GetReplantCells(t, designator); //t.Map.GetReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
 						if (!cells.Any()) return null;
 
 						designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(t.Position)).First());

@@ -49,9 +49,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 			Rect position = new Rect(0f, curY, 24f, 24f);
 			Rect rect = new Rect(position.xMax + 4f, curY, width, 24f);
 			Rect rect2 = new Rect(0f, rect.yMax + 4f, 150f, 27f);
-			GUI.DrawTexture(position, designator.icon);
-			Text.Font = GameFont.Tiny;
-			Widgets.CheckboxLabeled(rect, "TreeDesireDeannoyance_ZoneReplant_Enabled".Translate(), ref zone.enabled, false, null, null, true);
+			//GUI.DrawTexture(position, designator.icon);
+			//Text.Font = GameFont.Tiny;
+			//Widgets.CheckboxLabeled(rect, "TreeDesireDeannoyance_ZoneReplant_Enabled".Translate(), ref zone.enabled, false, null, null, true);
 			Text.Font = GameFont.Small;
 			if (Widgets.ButtonText(rect2, "TreeDesireDeannoyance_ZoneReplant_ReplantNow".Translate(), true, true, true, null))
 			{
