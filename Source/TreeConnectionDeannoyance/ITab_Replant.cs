@@ -14,15 +14,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			get
 			{
 				yield return SpecialThingFilterDefOf.AllowFresh;
-				/*
-				if (ModsConfig.IdeologyActive)
-				{
-					yield return SpecialThingFilterDefOf.AllowVegetarian;
-					yield return SpecialThingFilterDefOf.AllowCarnivore;
-					yield return SpecialThingFilterDefOf.AllowCannibal;
-					yield return SpecialThingFilterDefOf.AllowInsectMeat;
-				}
-				*/
 				yield break;
 			}
 		}
