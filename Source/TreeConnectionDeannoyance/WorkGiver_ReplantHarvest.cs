@@ -79,24 +79,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			return job;
 		}
 
-		private static bool IsSupposedToBeThere(Plant plant)
-		{
-			if (!plant.def.plant.Sowable)
-			{
-				return false;
-			}
-
-			if (!plant.Spawned)
-			{
-				return false;
-			}
-
-			if (plant.Map.zoneManager.ZoneAt(plant.Position) is Zone_Replant zone && zone.ReplantFilter.Allows(plant))
-			{
-				return true;
-			}
-
-			return false;
-		}
+		private static bool IsSupposedToBeThere(Plant plant) => plant.Map.zoneManager.ZoneAt(plant.Position) is Zone_Replant zone && zone.ReplantFilter.Allows(plant);
 	}
 }
