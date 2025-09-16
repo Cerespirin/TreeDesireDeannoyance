@@ -102,8 +102,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			base.ExposeData();
 			//Scribe_Values.Look(ref enabled, "enabled", true);
-			Scribe_Deep.Look(ref replantFilter, "replantFilter", Array.Empty<object>());
 			Scribe_Values.Look(ref allowHarvest, "allowCut");
+			Scribe_Deep.Look(ref replantFilter, "replantFilter");
 		}
 
 		public override IEnumerable<InspectTabBase> GetInspectTabs()
