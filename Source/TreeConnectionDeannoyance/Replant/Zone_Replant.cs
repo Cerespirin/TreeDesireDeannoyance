@@ -138,7 +138,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			new ITab_Replant()
 		};
 
-		//public bool enabled;
 		public bool allowHarvest = false;
 		private ThingFilter replantFilter;
 		private ThingFilter replantFilterDefault;
