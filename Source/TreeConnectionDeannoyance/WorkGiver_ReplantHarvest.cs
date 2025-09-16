@@ -10,5 +10,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 {
 	public class WorkGiver_ReplantHarvest : WorkGiver_ReplantGrowBase
 	{
+		public override PathEndMode PathEndMode => PathEndMode.Touch;
 	}
 }
