@@ -76,7 +76,7 @@
     <Compile Include="Replant\ITab_Replant.cs" />
     <Compile Include="Replant\Zone_Replant.cs" />
     <Compile Include="WorkGiver_Forage.cs" />
-    <Compile Include="WorkGiver_AutoReplant.cs" />
+    <Compile Include="Replant\WorkGiver_AutoReplant.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
