@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
@@ -32,12 +33,33 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		protected override void FillTab()
 		{
-			Zone_Replant autoCut = SelZone;
+			Zone_Replant zone = SelZone;
 			Rect rect = new Rect(0f, 0f, WinSize.x, WinSize.y).ContractedBy(10f);
 			Widgets.BeginGroup(rect);
 			float num = 0f;
-			this.DrawReplantFilter(ref num, rect.width, rect.height - num, autoCut);
+			DrawReplantOptions(ref num, rect.width, zone);
+			num += 4f;
+			DrawReplantFilter(ref num, rect.width, rect.height - num, zone);
 			Widgets.EndGroup();
+		}
+
+		private void DrawReplantOptions(ref float curY, float width, Zone_Replant zone)
+		{
+			Designator_ExtractTree designator = Find.ReverseDesignatorDatabase.Get<Designator_ExtractTree>();
+			Rect position = new Rect(0f, curY, 24f, 24f);
+			Rect rect = new Rect(position.xMax + 4f, curY, width, 24f);
+			Rect rect2 = new Rect(0f, rect.yMax + 4f, 150f, 27f);
+			GUI.DrawTexture(position, designator.icon);
+			Text.Font = GameFont.Tiny;
+			Widgets.CheckboxLabeled(rect, "TreeDesireDeannoyance_ZoneReplant_Enabled".Translate(), ref zone.enabled, false, null, null, true);
+			Text.Font = GameFont.Small;
+			if (Widgets.ButtonText(rect2, "TreeDesireDeannoyance_ZoneReplant_ReplantNow".Translate(), true, true, true, null))
+			{
+				//zone.DesignatePlantsToCut();
+				SoundDef soundSucceeded = designator.soundSucceeded;
+				soundSucceeded?.PlayOneShotOnCamera(null);
+			}
+			curY = rect2.yMax;
 		}
 
 		private void DrawReplantFilter(ref float curY, float width, float height, Zone_Replant zone)
@@ -53,6 +75,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 
 		private static readonly Vector2 WinSize = new Vector2(300f, 480f);
+		#pragma warning disable IDE0044 // Add readonly modifier
 		private ThingFilterUI.UIState replantFilterState = new ThingFilterUI.UIState();
+		#pragma warning restore IDE0044 // Add readonly modifier
 	}
 }
