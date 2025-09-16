@@ -18,7 +18,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override bool ShouldSkip(Pawn pawn, bool forced = false)
 		{
-			if (!Current.Game.GetComponent<MyGameComponent>().autoReplantTrees)
+			if (!MyHelper.ReplantSetting)
 			{
 				return true;
 			}
