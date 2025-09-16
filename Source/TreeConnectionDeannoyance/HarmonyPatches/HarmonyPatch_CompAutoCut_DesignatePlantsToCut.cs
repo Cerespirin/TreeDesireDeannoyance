@@ -21,7 +21,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				if (instruction.opcode == OpCodes.Stloc_0)
 				{
 					yield return instruction;
-					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MyHelper), nameof(MyHelper.ExtractSetting)));
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Property(typeof(MyHelper), nameof(MyHelper.ExtractSetting)).GetGetMethod());
 					yield return new CodeInstruction(OpCodes.Stloc_S, extractSetting.LocalIndex);
 				}
 				else if (instruction.opcode == OpCodes.Ldsfld && (FieldInfo)instruction.operand == AccessTools.Field(typeof(DesignationDefOf), nameof(DesignationDefOf.CutPlant)))
