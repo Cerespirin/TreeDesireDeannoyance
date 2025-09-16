@@ -12,7 +12,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public ITab_Replant()
 		{
 			size = WinSize;
-			labelKey = "TabWindTurbineAutoCut";
+			labelKey = "TreeDesireDeannoyance_TabReplant";
 		}
 
 		public override void OnOpen()
