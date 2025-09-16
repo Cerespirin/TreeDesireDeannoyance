@@ -16,14 +16,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 			if (__result.def == JobDefOf.CutPlant && __result.targetA.Thing.IsRelevantToTreeLovers())
 			{
 				DesignationManager designationManager = __result.targetA.Thing.Map.designationManager;
-				bool hasDesignation = designationManager.HasMapDesignationOn(__result.targetA.Thing);
-				if (!hasDesignation || designationManager.DesignationOn(__result.targetA.Thing, DesignationDefOf.ExtractTree) != null)
+				if (!designationManager.HasMapDesignationOn(__result.targetA.Thing) || designationManager.DesignationOn(__result.targetA.Thing, DesignationDefOf.ExtractTree) != null)
 				{
 					__result.def = JobDefOf.ExtractTree;
-					if (!hasDesignation)
-					{
-						designationManager.AddDesignation(new Designation(__result.targetA.Thing, DesignationDefOf.ExtractTree));
-					}
+					__result.ignoreDesignations = true;
 				}
 			}
 		}

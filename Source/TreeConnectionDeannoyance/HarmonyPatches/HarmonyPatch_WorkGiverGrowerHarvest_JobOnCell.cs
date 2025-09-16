@@ -33,8 +33,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 							__result.def = JobDefOf.ExtractTree;
 							__result.targetA = firstTarget;
 							__result.targetQueueA = null;
-
-							firstTarget.Thing.Map.designationManager.AddDesignation(new Designation(firstTarget.Thing, DesignationDefOf.ExtractTree));
+							__result.ignoreDesignations = true;
 						}
 					}
 				}
