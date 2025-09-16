@@ -9,6 +9,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 {
 	public class Zone_Replant : Zone
 	{
+		public Zone_Replant() { }
+
 		public Zone_Replant(ZoneManager zoneManager) : base("TreeDesireDeannoyance_ZoneReplant".Translate(), zoneManager)
 		{
 			replantFilter = new ThingFilter();
