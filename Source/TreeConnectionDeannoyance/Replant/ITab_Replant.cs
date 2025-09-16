@@ -37,12 +37,12 @@ namespace Cerespirin.TreeDesireDeannoyance
 			Rect rect = new Rect(0f, 0f, WinSize.x, WinSize.y).ContractedBy(10f);
 			Widgets.BeginGroup(rect);
 			float num = 0f;
-			DrawReplantOptions(ref num, rect.width, zone);
-			num += 4f;
+			//DrawReplantOptions(ref num, rect.width, zone);
+			//num += 4f;
 			DrawReplantFilter(ref num, rect.width, rect.height - num, zone);
 			Widgets.EndGroup();
 		}
-
+		/*
 		private void DrawReplantOptions(ref float curY, float width, Zone_Replant zone)
 		{
 			Designator_ExtractTree designator = Find.ReverseDesignatorDatabase.Get<Designator_ExtractTree>();
@@ -55,13 +55,13 @@ namespace Cerespirin.TreeDesireDeannoyance
 			Text.Font = GameFont.Small;
 			if (Widgets.ButtonText(rect2, "TreeDesireDeannoyance_ZoneReplant_ReplantNow".Translate(), true, true, true, null))
 			{
-				//zone.DesignatePlantsToCut();
+				zone.DesignatePlantsToReplant();
 				SoundDef soundSucceeded = designator.soundSucceeded;
 				soundSucceeded?.PlayOneShotOnCamera(null);
 			}
 			curY = rect2.yMax;
 		}
-
+		*/
 		private void DrawReplantFilter(ref float curY, float width, float height, Zone_Replant zone)
 		{
 			Rect rect = new Rect(0f, curY, width, height);
