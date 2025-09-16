@@ -25,19 +25,19 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		protected override void FillTab()
 		{
-			//CompAutoCut autoCut = this.AutoCut;
+			Zone_AutoReplant autoCut = SelZone;
 			Rect rect = new Rect(0f, 0f, WinSize.x, WinSize.y).ContractedBy(10f);
 			Widgets.BeginGroup(rect);
 			float num = 0f;
-			this.DrawPlantFilter(ref num, rect.width, rect.height - num, autoCut);
+			this.DrawReplantFilter(ref num, rect.width, rect.height - num, autoCut);
 			Widgets.EndGroup();
 		}
 
-		private void DrawPlantFilter(ref float curY, float width, float height, CompAutoCut autoCut)
+		private void DrawReplantFilter(ref float curY, float width, float height, Zone_AutoReplant zone)
 		{
 			Rect rect = new Rect(0f, curY, width, height);
-			ThingFilter autoCutFilter = SelZone.ReplantFilter;
-			ThingFilter fixedAutoCutFilter = SelZone.FixedReplantFilter;
+			ThingFilter autoCutFilter = zone.ReplantFilter;
+			ThingFilter fixedAutoCutFilter = zone.FixedReplantFilter;
 			ThingFilterUI.DoThingFilterConfigWindow(rect, replantFilterState, autoCutFilter, fixedAutoCutFilter, 1, null, this.HiddenSpecialThingFilters());
 		}
 
