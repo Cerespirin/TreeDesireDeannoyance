@@ -7,7 +7,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	public class WorkGiver_ReplantClear : WorkGiver_ReplantGrowBase
 	{
 		public override PathEndMode PathEndMode => PathEndMode.ClosestTouch;
-		
+
 		public override Job JobOnCell(Pawn pawn, IntVec3 c, bool forced = false)
 		{
 			Map map = pawn.Map;
@@ -32,9 +32,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 					return JobMaker.MakeJob(JobDefOf.CutPlant, thing);
 				}
-				if (thing.def.EverHaulable) 
-				{ 
-					return HaulAIUtility.HaulAsideJobFor(pawn, thing); 
+				if (thing.def.EverHaulable)
+				{
+					return HaulAIUtility.HaulAsideJobFor(pawn, thing);
 				}
 				return null;
 			}
