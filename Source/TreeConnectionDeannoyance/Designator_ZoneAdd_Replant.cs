@@ -45,7 +45,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 			return base.CanDesignateCell(c);
 		}
-		/*
+
 		public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
 		{
 			get 
@@ -53,6 +53,5 @@ namespace Cerespirin.TreeDesireDeannoyance
 				return base.RightClickFloatMenuOptions;
 			}
 		}
-		*/
 	}
 }
