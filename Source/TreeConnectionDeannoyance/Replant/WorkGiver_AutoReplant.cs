@@ -27,33 +27,30 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
 		{
-			if (t is MinifiedTree)
+			if (!(t is MinifiedTree)) { return null; }
+
+			if (InstallBlueprintUtility.ExistingBlueprintFor(t) == null)
 			{
-				if (InstallBlueprintUtility.ExistingBlueprintFor(t) == null)
+				Gizmo gizmo = t.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
+				MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
+				Designator_Replant designator = (Designator_Replant)gizmo;
+
+				// I *still* can't believe that designators find their owners based on what the player has selected...
+				try
 				{
-					Gizmo gizmo = t.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
-					MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
-					Designator_Replant designator = (Designator_Replant)gizmo;
+					component.designatorOwners.Add(gizmo, t);
 
-					// I *still* can't believe that designators find their owners based on what the player has selected...
-					try
-					{
-						component.designatorOwners.Add(gizmo, t);
+					IEnumerable<IntVec3> cells = MyHelper.GetReplantCells(t, designator); //t.Map.GetReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
+					if (!cells.Any()) { return null; }
 
-						IEnumerable<IntVec3> cells = MyHelper.GetReplantCells(t, designator); //t.Map.GetReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
-						if (!cells.Any()) { return null; }
-
-						designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(t.Position)).First());
-					}
-					finally
-					{
-						component.designatorOwners.Remove(gizmo);
-					}
+					designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(t.Position)).First());
 				}
-				return base.JobOnThing(pawn, InstallBlueprintUtility.ExistingBlueprintFor(t), forced);
-
+				finally
+				{
+					component.designatorOwners.Remove(gizmo);
+				}
 			}
-			return null;
+			return base.JobOnThing(pawn, InstallBlueprintUtility.ExistingBlueprintFor(t), forced);
 		}
 	}
 }
