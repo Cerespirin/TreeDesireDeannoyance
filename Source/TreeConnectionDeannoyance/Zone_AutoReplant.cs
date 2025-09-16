@@ -35,7 +35,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 		}
 
-		public Zone_AutoReplant(ZoneManager zoneManager) : base("TreeDesireDeannoyance_ZoneReplant".Translate(), zoneManager) { }
+		public Zone_AutoReplant(ZoneManager zoneManager) : base("TreeDesireDeannoyance_ZoneReplant".Translate(), zoneManager) 
+		{ 
+			replantFilter = new ThingFilter();
+		}
 
 		protected override Color NextZoneColor
 		{
