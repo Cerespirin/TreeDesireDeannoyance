@@ -7,21 +7,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 {
 	public class Designator_ZoneAdd_Replant : Designator_ZoneAdd
 	{
-		protected override string NewZoneLabel
-		{
-			get
-			{
-				return "TreeDesireDeannoyance_ZoneReplant".Translate();
-			}
-		}
+		protected override string NewZoneLabel => "TreeDesireDeannoyance_ZoneReplant".Translate();
 
-		protected virtual bool ShowRightClickHideOptions
-		{
-			get
-			{
-				return true;
-			}
-		}
+		protected virtual bool ShowRightClickHideOptions => true;
 
 		protected override Zone MakeNewZone()
 		{
