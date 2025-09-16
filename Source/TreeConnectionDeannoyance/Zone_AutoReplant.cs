@@ -35,9 +35,29 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 		}
 
+		public ThingFilter DefaultAutoCutFilter
+		{
+			get
+			{
+				if (defaultReplantFilter == null)
+				{
+					defaultReplantFilter = new ThingFilter();
+					foreach (ThingDef thingDef in FixedReplantFilter.AllowedThingDefs)
+					{
+						if (thingDef.IsRelevantToTreeLovers())
+						{
+							defaultReplantFilter.SetAllow(thingDef, true);
+						}
+					}
+				}
+				return defaultReplantFilter;
+			}
+		}
+
 		public Zone_AutoReplant(ZoneManager zoneManager) : base("TreeDesireDeannoyance_ZoneReplant".Translate(), zoneManager) 
 		{ 
 			replantFilter = new ThingFilter();
+			replantFilter.CopyAllowancesFrom(DefaultAutoCutFilter);
 		}
 
 		protected override Color NextZoneColor
@@ -78,5 +98,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		private ThingFilter fixedReplantFilter;
 		private ThingFilter replantFilter;
+		private ThingFilter defaultReplantFilter;
 	}
 }
