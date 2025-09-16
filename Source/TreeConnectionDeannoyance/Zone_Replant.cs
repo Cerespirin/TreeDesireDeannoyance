@@ -32,7 +32,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				if (fixedReplantFilter == null)
 				{
 					fixedReplantFilter = new ThingFilter();
-					foreach (ThingDef thingDef in Map.wildPlantSpawner.AllWildPlants.Where(t => t.Minifiable)) //DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable))
+					foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable))
 					{
 						fixedReplantFilter.SetAllow(thingDef, true);
 					}
