@@ -14,7 +14,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public Zone_Replant(ZoneManager zoneManager) : base("TreeDesireDeannoyance_ZoneReplant".Translate(), zoneManager)
 		{
 			replantFilter = new ThingFilter();
-			replantFilter.CopyAllowancesFrom(DefaultAutoCutFilter);
+			replantFilter.CopyAllowancesFrom(DefaultReplantFilter);
 		}
 
 		public ThingFilter ReplantFilter
@@ -30,33 +30,34 @@ namespace Cerespirin.TreeDesireDeannoyance
 			get
 			{
 				if (fixedReplantFilter == null)
+				if (replantFilterFixed == null)
 				{
-					fixedReplantFilter = new ThingFilter();
+					replantFilterFixed = new ThingFilter();
 					foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable))
 					{
-						fixedReplantFilter.SetAllow(thingDef, true);
+						replantFilterFixed.SetAllow(thingDef, true);
 					}
 				}
-				return fixedReplantFilter;
+				return replantFilterFixed;
 			}
 		}
 
-		public ThingFilter DefaultAutoCutFilter
+		public ThingFilter DefaultReplantFilter
 		{
 			get
 			{
-				if (defaultReplantFilter == null)
+				if (replantFilterDefault == null)
 				{
-					defaultReplantFilter = new ThingFilter();
+					replantFilterDefault = new ThingFilter();
 					foreach (ThingDef thingDef in FixedReplantFilter.AllowedThingDefs)
 					{
 						if (thingDef.IsRelevantToTreeLovers())
 						{
-							defaultReplantFilter.SetAllow(thingDef, true);
+							replantFilterDefault.SetAllow(thingDef, true);
 						}
 					}
 				}
-				return defaultReplantFilter;
+				return replantFilterDefault;
 			}
 		}
 
@@ -100,6 +101,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public bool enabled;
 		private ThingFilter fixedReplantFilter;
 		private ThingFilter replantFilter;
-		private ThingFilter defaultReplantFilter;
+		private ThingFilter replantFilterDefault;
+		private ThingFilter replantFilterFixed;
 	}
 }
