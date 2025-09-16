@@ -11,6 +11,24 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public Zone_AutoReplant SelZone => SelObject as Zone_AutoReplant;
 
+		private IEnumerable<SpecialThingFilterDef> HiddenSpecialThingFilters
+		{
+			get
+			{
+				yield return SpecialThingFilterDefOf.AllowFresh;
+				/*
+				if (ModsConfig.IdeologyActive)
+				{
+					yield return SpecialThingFilterDefOf.AllowVegetarian;
+					yield return SpecialThingFilterDefOf.AllowCarnivore;
+					yield return SpecialThingFilterDefOf.AllowCannibal;
+					yield return SpecialThingFilterDefOf.AllowInsectMeat;
+				}
+				*/
+				yield break;
+			}
+		}
+
 		public ITab_Replant()
 		{
 			size = WinSize;
@@ -38,7 +56,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			Rect rect = new Rect(0f, curY, width, height);
 			ThingFilter replantFilter = zone.ReplantFilter;
 			ThingFilter fixedReplantFilter = zone.FixedReplantFilter;
-			ThingFilterUI.DoThingFilterConfigWindow(rect, replantFilterState, replantFilter, fixedReplantFilter, 1);
+			ThingFilterUI.DoThingFilterConfigWindow(rect, replantFilterState, replantFilter, fixedReplantFilter, 1, null, HiddenSpecialThingFilters);
 		}
 
 
