@@ -48,9 +48,17 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
 		{
-			get 
+			get
 			{
-				return base.RightClickFloatMenuOptions;
+				if (!ShowRightClickHideOptions)
+				{
+					yield break;
+				}
+				foreach (FloatMenuOption floatMenuOption in Command_Hide_ZoneReplant.GetHideOptions())
+				{
+					yield return floatMenuOption;
+				}
+				yield break;
 			}
 		}
 	}
