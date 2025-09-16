@@ -18,7 +18,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public override void OnOpen()
 		{
 			base.OnOpen();
-			//plantFilterState.quickSearch.Reset();
+			replantFilterState.quickSearch.Reset();
 		}
 
 		protected override void FillTab()
@@ -48,6 +48,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 
 		private static readonly Vector2 WinSize = new Vector2(300f, 480f);
-		private ThingFilterUI.UIState plantFilterState = new ThingFilterUI.UIState();
+		private ThingFilterUI.UIState replantFilterState = new ThingFilterUI.UIState();
 	}
 }
