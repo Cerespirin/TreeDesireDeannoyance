@@ -103,6 +103,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			base.ExposeData();
 			//Scribe_Values.Look(ref enabled, "enabled", true);
 			Scribe_Deep.Look(ref replantFilter, "replantFilter", Array.Empty<object>());
+			Scribe_Values.Look(ref allowHarvest, "allowCut");
 		}
 
 		public override IEnumerable<InspectTabBase> GetInspectTabs()
@@ -114,6 +115,17 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			yield return new Command_Hide_ZoneReplant(this);
 			foreach (Gizmo gizmo in base.GetGizmos()) { yield return gizmo; }
+			yield return new Command_Toggle
+			{
+				defaultLabel = "CommandAllowCut".Translate(),
+				defaultDesc = "CommandAllowCutDesc".Translate(),
+				icon = ContentFinder<Texture2D>.Get("UI/Designators/Harvest"),
+				isActive = () => allowHarvest,
+				toggleAction = delegate ()
+				{
+					allowHarvest = !allowHarvest;
+				}
+			};
 		}
 
 		public override IEnumerable<Gizmo> GetZoneAddGizmos()
@@ -127,6 +139,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		};
 
 		//public bool enabled;
+		public bool allowHarvest = false;
 		private ThingFilter replantFilter;
 		private ThingFilter replantFilterDefault;
 		private ThingFilter replantFilterFixed;
