@@ -29,7 +29,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			get
 			{
-				if (fixedReplantFilter == null)
 				if (replantFilterFixed == null)
 				{
 					replantFilterFixed = new ThingFilter();
@@ -72,7 +71,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public override void ExposeData()
 		{
 			base.ExposeData();
-			Scribe_Values.Look(ref enabled, "enabled", true);
+			//Scribe_Values.Look(ref enabled, "enabled", true);
 			Scribe_Deep.Look(ref replantFilter, "replantFilter", Array.Empty<object>());
 		}
 
@@ -98,8 +97,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			new ITab_Replant()
 		};
 
-		public bool enabled;
-		private ThingFilter fixedReplantFilter;
+		//public bool enabled;
 		private ThingFilter replantFilter;
 		private ThingFilter replantFilterDefault;
 		private ThingFilter replantFilterFixed;
