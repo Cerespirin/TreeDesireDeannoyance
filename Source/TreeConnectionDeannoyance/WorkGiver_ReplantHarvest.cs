@@ -14,7 +14,15 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override bool HasJobOnCell(Pawn pawn, IntVec3 c, bool forced = false)
 		{
-			throw new NotImplementedException();
+			Plant plant = c.GetPlant(pawn.Map);
+			if (plant == null) /**********************************************************************************************************/ { return false; }
+			if (!plant.HarvestableNow || plant.LifeStage != PlantLifeStage.Mature) /******************************************************/ { return false; }
+			if (!forced && plant.TryGetComp(out CompPlantPreventCutting compPlantPreventCutting) && compPlantPreventCutting.PreventCutting) { return false; }
+			if (!plant.CanYieldNow()) /***************************************************************************************************/ { return false; }
+			if (!plant.def.plant.autoHarvestable && !forced) /****************************************************************************/ { return false; }
+
+			Zone_Replant zone = c.GetZone(pawn.Map) as Zone_Replant;
+			return (zone?.allowCut ?? true) && PlantUtility.PawnWillingToCutPlant_Job(plant, pawn) && pawn.CanReserve(plant, 1, -1, null, forced);
 		}
 
 		public override bool ShouldSkip(Pawn pawn, bool forced = false)
@@ -52,7 +60,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				if (radialCell.GetRoom(map) == room && HasJobOnCell(pawn, radialCell, forced))
 				{
 					Plant plant = radialCell.GetPlant(map);
-					if (!(radialCell != c) || ((radialCell.GetZone(map) as Zone_Replant)?.settings.filter.Allows(plant) ?? false)) //plant.def == WorkGiver_Grower.CalculateWantedPlantDef(radialCell, map))
+					if (!(radialCell != c) || ((radialCell.GetZone(map) as Zone_Replant)?.settings.filter.Allows(plant) ?? false))
 					{
 						totalWork += plant.def.plant.harvestWork;
 						if (radialCell != c && totalWork > 2400f)
@@ -68,11 +76,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 				job.targetQueueA.SortBy(targ => targ.Cell.DistanceToSquared(pawn.Position));
 			}
 			return job;
-		}
-
-		protected override bool ExtraRequirements(Zone_Replant zone, Pawn pawn)
-		{
-			throw new NotImplementedException();
 		}
 	}
 }
