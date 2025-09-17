@@ -12,11 +12,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public override PathEndMode PathEndMode => PathEndMode.ClosestTouch;
 		
-		public override bool HasJobOnCell(Pawn pawn, IntVec3 c, bool forced = false)
-		{
-			throw new NotImplementedException();
-		}
-
 		public override Job JobOnCell(Pawn pawn, IntVec3 c, bool forced = false)
 		{
 			Map map = pawn.Map;
