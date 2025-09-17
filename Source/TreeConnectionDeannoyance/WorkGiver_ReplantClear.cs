@@ -16,7 +16,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 			foreach (Thing thing in c.GetThingList(map))
 			{
-				if (!thing.def.BlocksPlanting()) /**************/ { continue; }
+				if (!thing.def.BlocksPlanting(true)) /**********/ { continue; }
 				if (!pawn.CanReserve(thing, 1, -1, null, forced)) { return null; }
 
 				if (thing.def.category == ThingCategory.Plant)
