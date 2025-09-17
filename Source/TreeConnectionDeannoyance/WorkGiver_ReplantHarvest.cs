@@ -42,7 +42,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				if (radialCell.GetRoom(map) == room && HasJobOnCell(pawn, radialCell, forced))
 				{
 					Plant plant = radialCell.GetPlant(map);
-					if (!(radialCell != c) || ((radialCell.GetZone(map) as Zone_Replant)?.ReplantFilter.Allows(plant) ?? false)) //plant.def == WorkGiver_Grower.CalculateWantedPlantDef(radialCell, map))
+					if (!(radialCell != c) || ((radialCell.GetZone(map) as Zone_Replant)?.settings.filter.Allows(plant) ?? false)) //plant.def == WorkGiver_Grower.CalculateWantedPlantDef(radialCell, map))
 					{
 						totalWork += plant.def.plant.harvestWork;
 						if (radialCell != c && totalWork > 2400f)
