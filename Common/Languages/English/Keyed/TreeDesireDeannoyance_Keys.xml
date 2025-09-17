@@ -6,6 +6,6 @@
 	<TreeDesireDeannoyance_DesignatorReplantZoneDesc>-todo-</TreeDesireDeannoyance_DesignatorReplantZoneDesc>
 	<TreeDesireDeannoyance_ReplantGroup>replant</TreeDesireDeannoyance_ReplantGroup>
 	<TreeDesireDeannoyance_TabReplant>Replant</TreeDesireDeannoyance_TabReplant>
-	<TreeDesireDeannoyance_ZoneReplant_Enabled>-todo-</TreeDesireDeannoyance_ZoneReplant_Enabled>
-	<TreeDesireDeannoyance_ZoneReplant_ReplantNow>-todo-</TreeDesireDeannoyance_ZoneReplant_ReplantNow>
+	<TreeDesireDeannoyance_ZoneReplant_AllowHarvest>Allow Harvest</TreeDesireDeannoyance_ZoneReplant_AllowHarvest>
+	<TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>-todo-</TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>
 </LanguageData>
