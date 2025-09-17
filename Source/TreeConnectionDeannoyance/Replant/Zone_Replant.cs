@@ -102,6 +102,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			base.ExposeData();
 			//Scribe_Values.Look(ref enabled, "enabled", true);
+			Scribe_Values.Look(ref allowCut, "allowCut", false);
 			Scribe_Deep.Look(ref replantFilter, "replantFilter", Array.Empty<object>());
 		}
 
