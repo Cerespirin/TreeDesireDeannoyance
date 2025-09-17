@@ -115,6 +115,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		};
 
 		//public bool enabled;
+		public bool allowCut = false;
 		public StorageSettings settings;
 		private static StorageSettings cachedFixedSettings;
 	}
