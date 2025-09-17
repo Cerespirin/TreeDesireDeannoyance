@@ -20,7 +20,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public override Job JobOnCell(Pawn pawn, IntVec3 c, bool forced = false)
 		{
 			Map map = pawn.Map;
+			#pragma warning disable IDE0019 // Use pattern matching
 			Zone_Replant zone = c.GetZone(map) as Zone_Replant;
+			#pragma warning restore IDE0019 // Use pattern matching
 			Plant plant = c.GetPlant(map);
 
 			foreach (Thing thing in c.GetThingList(map))
