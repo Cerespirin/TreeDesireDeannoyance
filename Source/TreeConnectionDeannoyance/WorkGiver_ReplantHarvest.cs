@@ -22,7 +22,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			if (!plant.def.plant.autoHarvestable && !forced) /****************************************************************************/ { return false; }
 
 			Zone_Replant zone = c.GetZone(pawn.Map) as Zone_Replant;
-			return (zone?.allowCut ?? true) && PlantUtility.PawnWillingToCutPlant_Job(plant, pawn) && pawn.CanReserve(plant, 1, -1, null, forced);
+			return (zone?.allowHarvest ?? true) && PlantUtility.PawnWillingToCutPlant_Job(plant, pawn) && pawn.CanReserve(plant, 1, -1, null, forced);
 		}
 
 		public override bool ShouldSkip(Pawn pawn, bool forced = false)
