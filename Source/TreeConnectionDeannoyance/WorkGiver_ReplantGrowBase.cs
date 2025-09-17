@@ -10,8 +10,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public override bool AllowUnreachable => true;
 
-		protected virtual bool ExtraRequirements(Zone_Replant zone, Pawn pawn) => true;
-
 		public override IEnumerable<IntVec3> PotentialWorkCellsGlobal(Pawn pawn)
 		{
 			foreach (Zone_Replant zone in pawn.Map.zoneManager.AllZones.OfType<Zone_Replant>())
@@ -26,5 +24,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 			yield break;
 		}
+
+		protected virtual bool ExtraRequirements(Zone_Replant zone, Pawn pawn) => true;
 	}
 }
