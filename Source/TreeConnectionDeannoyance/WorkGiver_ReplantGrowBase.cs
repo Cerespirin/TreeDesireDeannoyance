@@ -8,13 +8,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 {
 	public abstract class WorkGiver_ReplantGrowBase : WorkGiver_Scanner
 	{
-		public override bool AllowUnreachable
-		{
-			get
-			{
-				return true;
-			}
-		}
+		public override bool AllowUnreachable => true;
 
 		public override IEnumerable<IntVec3> PotentialWorkCellsGlobal(Pawn pawn)
 		{
