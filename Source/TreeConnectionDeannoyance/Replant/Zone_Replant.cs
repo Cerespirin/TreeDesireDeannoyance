@@ -33,37 +33,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public bool StorageTabVisible => true;
 
-		/*
-		public void DesignatePlantsToReplant()
-		{
-			IEnumerable<Thing> things = Map.listerThings.AllThings.Where(t => t is MinifiedTree);
-			MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
-
-			foreach (Thing thing in things)
-			{
-				if (InstallBlueprintUtility.ExistingBlueprintFor(thing) != null) { continue; }
-
-				Gizmo gizmo = thing.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
-
-				// I *still* can't believe that designators find their owners based on what the player has selected...
-				try
-				{
-					Designator_Replant designator = (Designator_Replant)gizmo;
-					component.designatorOwners.Add(gizmo, thing);
-
-					IEnumerable<IntVec3> cells = Cells.Where(c1 => designator.CanDesignateCell(c1));
-					if (cells.Any()) 
-					{ 
-						designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(thing.Position)).First());
-					}
-				}
-				finally
-				{
-					component.designatorOwners.Remove(gizmo);
-				}
-			}
-		}
-		*/
 		public override void ExposeData()
 		{
 			base.ExposeData();
