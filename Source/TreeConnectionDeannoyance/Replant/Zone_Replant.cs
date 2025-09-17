@@ -16,51 +16,17 @@ namespace Cerespirin.TreeDesireDeannoyance
 			//replantFilter = new ThingFilter();
 			//replantFilter.CopyAllowancesFrom(DefaultReplantFilter);
 			settings = new StorageSettings(this);
-		}
-		/*
-		public ThingFilter ReplantFilter
-		{
-			get
+
+			//settings.filter.SetDisallowAll();
+			foreach (ThingDef thingDef in GetParentStoreSettings().filter.AllowedThingDefs)
 			{
-				return replantFilter;
+				if (thingDef.IsRelevantToTreeLovers())
+				{
+					settings.filter.SetAllow(thingDef, true);
+				}
 			}
 		}
 
-		public ThingFilter DefaultReplantFilter
-		{
-			get
-			{
-				if (replantFilterDefault == null)
-				{
-					replantFilterDefault = new ThingFilter();
-					foreach (ThingDef thingDef in FixedReplantFilter.AllowedThingDefs)
-					{
-						if (thingDef.IsRelevantToTreeLovers())
-						{
-							replantFilterDefault.SetAllow(thingDef, true);
-						}
-					}
-				}
-				return replantFilterDefault;
-			}
-		}
-
-		public ThingFilter FixedReplantFilter
-		{
-			get
-			{
-				if (replantFilterFixed == null)
-				{
-					replantFilterFixed = new ThingFilter();
-					foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable))
-					{
-						replantFilterFixed.SetAllow(thingDef, true);
-					}
-				}
-				return replantFilterFixed;
-			}
-		}
-		*/
 		protected override Color NextZoneColor
 		{
 			get
@@ -132,17 +98,26 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public StorageSettings GetStoreSettings()
 		{
-			throw new NotImplementedException();
+			return settings;
 		}
 
 		public StorageSettings GetParentStoreSettings()
 		{
-			throw new NotImplementedException();
+			if (cachedFixedSettings == null)
+			{
+				cachedFixedSettings = new StorageSettings();
+
+				foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable))
+				{
+					cachedFixedSettings.filter.SetAllow(thingDef, true);
+				}
+			}
+			return cachedFixedSettings;
 		}
 
 		public void Notify_SettingsChanged()
 		{
-			throw new NotImplementedException();
+			// nothing
 		}
 
 		private static readonly ITab[] ITabs = new ITab[]
@@ -155,5 +130,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 		//private ThingFilter replantFilterDefault;
 		//private ThingFilter replantFilterFixed;
 		public StorageSettings settings;
+		private static StorageSettings cachedFixedSettings;
 	}
 }
