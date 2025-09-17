@@ -11,6 +11,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	[HarmonyPatch(typeof(HaulAIUtility), "HaulablePlaceValidator")]
 	public static class HarmonyPatch_HaulAIUtility_HaulablePlaceValidator
 	{
+		/*
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
 		{
 			LocalBuilder newLocal = generator.DeclareLocal(typeof(bool));
@@ -45,5 +46,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 				Log.Error("[TreeDesireDeannoyance] HarmonyPatch_HaulAIUtility_HaulablePlaceValidator: unable to find injection point. This was likely due to a mod incompatibility; please report this to the mod author.");
 			}
 		}
+		*/
 	}
 }
