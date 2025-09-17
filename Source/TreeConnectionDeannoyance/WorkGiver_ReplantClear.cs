@@ -17,11 +17,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			throw new NotImplementedException();
 		}
 
-		public override bool ShouldSkip(Pawn pawn, bool forced = false)
-		{
-			return pawn.GetLord() != null || base.ShouldSkip(pawn, forced);
-		}
-
 		public override Job JobOnCell(Pawn pawn, IntVec3 c, bool forced = false)
 		{
 			Map map = pawn.Map;
