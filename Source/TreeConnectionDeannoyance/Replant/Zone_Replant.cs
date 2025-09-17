@@ -127,6 +127,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		};
 
 		//public bool enabled;
+		public bool allowCut = false;
 		private ThingFilter replantFilter;
 		private ThingFilter replantFilterDefault;
 		private ThingFilter replantFilterFixed;
