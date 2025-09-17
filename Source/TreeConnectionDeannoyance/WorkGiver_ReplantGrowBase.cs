@@ -14,7 +14,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			foreach (Zone_Replant zone in pawn.Map.zoneManager.AllZones.OfType<Zone_Replant>())
 			{
-				if (ExtraRequirements(zone, pawn) && !zone.ContainsStaticFire && pawn.CanReach(zone.Cells[0], PathEndMode.OnCell, pawn.NormalMaxDanger()))
+				if (!zone.ContainsStaticFire && pawn.CanReach(zone.Cells[0], PathEndMode.OnCell, pawn.NormalMaxDanger()))
 				{
 					foreach (IntVec3 cell in zone.cells)
 					{
@@ -24,7 +24,5 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 			yield break;
 		}
-
-		protected virtual bool ExtraRequirements(Zone_Replant zone, Pawn pawn) => true;
 	}
 }
