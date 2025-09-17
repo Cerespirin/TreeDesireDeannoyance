@@ -96,6 +96,17 @@ namespace Cerespirin.TreeDesireDeannoyance
 					allowCut = !allowCut;
 				}
 			};
+			yield return new Command_Toggle
+			{
+				defaultLabel = "TreeDesireDeannoyance_ZoneReplant_AllowHarvest".Translate(),
+				defaultDesc = "TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc".Translate(),
+				icon = ContentFinder<Texture2D>.Get("UI/Designators/Harvest"),
+				isActive = () => allowHarvest,
+				toggleAction = delegate ()
+				{
+					allowHarvest = !allowHarvest;
+				}
+			};
 		}
 
 		public override IEnumerable<Gizmo> GetZoneAddGizmos()
@@ -134,6 +145,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		//public bool enabled;
 		public bool allowCut = false;
+		public bool allowHarvest = false;
 		public StorageSettings settings;
 		private static StorageSettings cachedFixedSettings;
 	}
