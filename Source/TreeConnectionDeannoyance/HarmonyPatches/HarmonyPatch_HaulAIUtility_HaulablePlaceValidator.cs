@@ -20,6 +20,13 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 			foreach (CodeInstruction instruction in instructions)
 			{
+				if (instruction.opcode == OpCodes.Isinst && (Type)instruction.operand == typeof(Zone_Growing))
+				{
+					state = 1;
+					yield return new CodeInstruction(OpCodes.Stloc_S, newLocal.LocalIndex);
+					yield return new CodeInstruction(OpCodes.Ldloc_S, newLocal.LocalIndex);
+					yield return instruction;
+				}
 				if (state == 1 && instruction.opcode == OpCodes.Brfalse_S)
 				{
 					state = 2;
@@ -28,13 +35,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 					yield return new CodeInstruction(OpCodes.Isinst, typeof(Zone_Replant));
 					yield return instruction;
 					yield return new CodeInstruction(OpCodes.Nop).WithLabels(newLabel);
-				}
-				if (instruction.opcode == OpCodes.Isinst && (Type)instruction.operand == typeof(Zone_Growing))
-				{
-					state = 1;
-					yield return new CodeInstruction(OpCodes.Stloc_S, newLocal.LocalIndex);
-					yield return new CodeInstruction(OpCodes.Ldloc_S, newLocal.LocalIndex);
-					yield return instruction;
 				}
 				else
 				{
