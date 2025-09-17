@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,56 +6,20 @@ using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
-	public class Zone_Replant : Zone
+	public class Zone_Replant : Zone, IStoreSettingsParent
 	{
 		public Zone_Replant() { }
 
 		public Zone_Replant(ZoneManager zoneManager) : base("TreeDesireDeannoyance_ZoneReplant".Translate(), zoneManager)
 		{
-			replantFilter = new ThingFilter();
-			replantFilter.CopyAllowancesFrom(DefaultReplantFilter);
-		}
+			settings = new StorageSettings(this);
 
-		public ThingFilter ReplantFilter
-		{
-			get
+			foreach (ThingDef thingDef in GetParentStoreSettings().filter.AllowedThingDefs)
 			{
-				return replantFilter;
-			}
-		}
-
-		public ThingFilter DefaultReplantFilter
-		{
-			get
-			{
-				if (replantFilterDefault == null)
+				if (thingDef.IsRelevantToTreeLovers())
 				{
-					replantFilterDefault = new ThingFilter();
-					foreach (ThingDef thingDef in FixedReplantFilter.AllowedThingDefs)
-					{
-						if (thingDef.IsRelevantToTreeLovers())
-						{
-							replantFilterDefault.SetAllow(thingDef, true);
-						}
-					}
+					settings.filter.SetAllow(thingDef, true);
 				}
-				return replantFilterDefault;
-			}
-		}
-
-		public ThingFilter FixedReplantFilter
-		{
-			get
-			{
-				if (replantFilterFixed == null)
-				{
-					replantFilterFixed = new ThingFilter();
-					foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable))
-					{
-						replantFilterFixed.SetAllow(thingDef, true);
-					}
-				}
-				return replantFilterFixed;
 			}
 		}
 
@@ -67,6 +30,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 				return Color.Lerp(UnityEngine.Random.ColorHSV(0f, 0.196f, 1, 1, 1, 1), Color.gray, 0.5f).WithAlpha(0.09f);
 			}
 		}
+
+		public bool StorageTabVisible => true;
+
 		/*
 		public void DesignatePlantsToReplant()
 		{
@@ -102,7 +68,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			base.ExposeData();
 			//Scribe_Values.Look(ref enabled, "enabled", true);
-			Scribe_Deep.Look(ref replantFilter, "replantFilter", Array.Empty<object>());
+			Scribe_Deep.Look(ref settings, "settings", new object[] { this });
 		}
 
 		public override IEnumerable<InspectTabBase> GetInspectTabs()
@@ -114,11 +80,39 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			yield return new Command_Hide_ZoneReplant(this);
 			foreach (Gizmo gizmo in base.GetGizmos()) { yield return gizmo; }
+			foreach (Gizmo gizmo2 in StorageSettingsClipboard.CopyPasteGizmosFor(settings))
+			{
+				yield return gizmo2;
+			}
 		}
 
 		public override IEnumerable<Gizmo> GetZoneAddGizmos()
 		{
 			yield return DesignatorUtility.FindAllowedDesignator<Designator_ZoneAdd_Replant_Expand>();
+		}
+
+		public StorageSettings GetStoreSettings()
+		{
+			return settings;
+		}
+
+		public StorageSettings GetParentStoreSettings()
+		{
+			if (cachedFixedSettings == null)
+			{
+				cachedFixedSettings = new StorageSettings();
+
+				foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable))
+				{
+					cachedFixedSettings.filter.SetAllow(thingDef, true);
+				}
+			}
+			return cachedFixedSettings;
+		}
+
+		public void Notify_SettingsChanged()
+		{
+			// nothing
 		}
 
 		private static readonly ITab[] ITabs = new ITab[]
@@ -127,8 +121,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		};
 
 		//public bool enabled;
-		private ThingFilter replantFilter;
-		private ThingFilter replantFilterDefault;
-		private ThingFilter replantFilterFixed;
+		public StorageSettings settings;
+		private static StorageSettings cachedFixedSettings;
 	}
 }
