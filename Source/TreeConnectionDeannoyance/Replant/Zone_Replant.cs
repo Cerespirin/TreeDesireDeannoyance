@@ -115,6 +115,17 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			yield return new Command_Hide_ZoneReplant(this);
 			foreach (Gizmo gizmo in base.GetGizmos()) { yield return gizmo; }
+			yield return new Command_Toggle
+			{
+				defaultLabel = "CommandAllowCut".Translate(),
+				defaultDesc = "CommandAllowCutDesc".Translate(),
+				icon = Designator_PlantsCut.IconTex,
+				isActive = () => allowCut,
+				toggleAction = delegate ()
+				{
+					allowCut = !allowCut;
+				}
+			};
 		}
 
 		public override IEnumerable<Gizmo> GetZoneAddGizmos()
