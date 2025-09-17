@@ -21,5 +21,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			throw new NotImplementedException();
 		}
+
+		protected override bool ExtraRequirements(Zone_Replant zone, Pawn pawn)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
