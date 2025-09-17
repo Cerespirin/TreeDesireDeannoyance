@@ -68,6 +68,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 				return Color.Lerp(UnityEngine.Random.ColorHSV(0f, 0.196f, 1, 1, 1, 1), Color.gray, 0.5f).WithAlpha(0.09f);
 			}
 		}
+
+		public bool StorageTabVisible => throw new NotImplementedException();
+
 		/*
 		public void DesignatePlantsToReplant()
 		{
@@ -125,6 +128,21 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public override IEnumerable<Gizmo> GetZoneAddGizmos()
 		{
 			yield return DesignatorUtility.FindAllowedDesignator<Designator_ZoneAdd_Replant_Expand>();
+		}
+
+		public StorageSettings GetStoreSettings()
+		{
+			throw new NotImplementedException();
+		}
+
+		public StorageSettings GetParentStoreSettings()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Notify_SettingsChanged()
+		{
+			throw new NotImplementedException();
 		}
 
 		private static readonly ITab[] ITabs = new ITab[]
