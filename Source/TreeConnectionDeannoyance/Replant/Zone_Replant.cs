@@ -23,13 +23,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 		}
 
-		protected override Color NextZoneColor
-		{
-			get
-			{
-				return Color.Lerp(UnityEngine.Random.ColorHSV(0f, 0.196f, 1, 1, 1, 1), Color.gray, 0.5f).WithAlpha(0.09f);
-			}
-		}
+		protected override Color NextZoneColor => Color.Lerp(UnityEngine.Random.ColorHSV(0f, 0.196f, 1, 1, 1, 1), Color.gray, 0.5f).WithAlpha(0.09f);
 
 		public bool StorageTabVisible => true;
 
