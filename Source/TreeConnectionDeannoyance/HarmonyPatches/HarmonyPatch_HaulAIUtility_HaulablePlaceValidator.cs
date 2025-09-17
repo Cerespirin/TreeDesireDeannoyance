@@ -9,9 +9,9 @@ using Verse.AI;
 namespace Cerespirin.TreeDesireDeannoyance
 {
 	[HarmonyPatch(typeof(HaulAIUtility), "HaulablePlaceValidator")]
+	[HarmonyDebug]
 	public static class HarmonyPatch_HaulAIUtility_HaulablePlaceValidator
 	{
-		/*
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
 		{
 			LocalBuilder newLocal = generator.DeclareLocal(typeof(bool));
@@ -27,7 +27,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 					yield return new CodeInstruction(OpCodes.Ldloc_S, newLocal.LocalIndex);
 					yield return instruction;
 				}
-				if (state == 1 && instruction.opcode == OpCodes.Brfalse_S)
+				else if (state == 1 && instruction.opcode == OpCodes.Brfalse_S)
 				{
 					state = 2;
 					yield return new CodeInstruction(OpCodes.Brtrue_S, newLabel);
@@ -46,6 +46,5 @@ namespace Cerespirin.TreeDesireDeannoyance
 				Log.Error("[TreeDesireDeannoyance] HarmonyPatch_HaulAIUtility_HaulablePlaceValidator: unable to find injection point. This was likely due to a mod incompatibility; please report this to the mod author.");
 			}
 		}
-		*/
 	}
 }
