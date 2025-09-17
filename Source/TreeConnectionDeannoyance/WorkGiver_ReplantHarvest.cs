@@ -64,5 +64,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 			return job;
 		}
+
+		protected override bool ExtraRequirements(Zone_Replant zone, Pawn pawn)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
