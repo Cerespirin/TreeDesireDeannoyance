@@ -14,5 +14,7 @@
 	<WorkGiverDef ParentName="PlantsCut">
 		<defName>TreeDesireDeannoyance_ReplantClear</defName>
 		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_ReplantClear</giverClass>
+		<scanThings>false</scanThings>
+		<scanCells>true</scanCells>
 	</WorkGiverDef>
 </Defs>
