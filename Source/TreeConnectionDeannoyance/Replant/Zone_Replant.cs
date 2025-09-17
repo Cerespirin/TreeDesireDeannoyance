@@ -35,7 +35,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 		}
 
-		public bool StorageTabVisible => throw new NotImplementedException();
+		public bool StorageTabVisible => true;
 
 		/*
 		public void DesignatePlantsToReplant()
