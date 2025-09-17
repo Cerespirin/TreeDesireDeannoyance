@@ -12,11 +12,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public Zone_Replant(ZoneManager zoneManager) : base("TreeDesireDeannoyance_ZoneReplant".Translate(), zoneManager)
 		{
-			//replantFilter = new ThingFilter();
-			//replantFilter.CopyAllowancesFrom(DefaultReplantFilter);
 			settings = new StorageSettings(this);
 
-			//settings.filter.SetDisallowAll();
 			foreach (ThingDef thingDef in GetParentStoreSettings().filter.AllowedThingDefs)
 			{
 				if (thingDef.IsRelevantToTreeLovers())
@@ -71,7 +68,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			base.ExposeData();
 			//Scribe_Values.Look(ref enabled, "enabled", true);
-			//Scribe_Deep.Look(ref replantFilter, "replantFilter", Array.Empty<object>());
 			Scribe_Deep.Look(ref settings, "settings", new object[] { this });
 		}
 
@@ -125,9 +121,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 		};
 
 		//public bool enabled;
-		//private ThingFilter replantFilter;
-		//private ThingFilter replantFilterDefault;
-		//private ThingFilter replantFilterFixed;
 		public StorageSettings settings;
 		private static StorageSettings cachedFixedSettings;
 	}
