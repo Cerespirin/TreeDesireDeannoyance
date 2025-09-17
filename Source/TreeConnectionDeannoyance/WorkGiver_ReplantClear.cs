@@ -33,7 +33,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				}
 				if (thing.def.EverHaulable) 
 				{ 
-					//return HaulAIUtility.HaulAsideJobFor(pawn, thing); 
+					return HaulAIUtility.HaulAsideJobFor(pawn, thing); 
 				}
 				return null;
 			}
