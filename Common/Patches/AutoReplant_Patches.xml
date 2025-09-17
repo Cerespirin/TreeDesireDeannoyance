@@ -7,6 +7,18 @@
 		<value>Replant</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAttributeAdd">
+		<xpath>Defs/WorkGiverDef[defName="GrowerHarvest"]</xpath>
+		<attribute>Name</attribute>
+		<value>GrowerHarvest</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeAdd">
+		<xpath>Defs/WorkGiverDef[defName="PlantsCut"]</xpath>
+		<attribute>Name</attribute>
+		<value>PlantsCut</value>
+	</Operation>
+
 	<Operation Class="PatchOperationInsert">
 		<xpath>Defs/DesignationCategoryDef[defName="Zone"]/specialDesignatorClasses/li[text()="Designator_ZoneDelete"]</xpath>
 		<value>
