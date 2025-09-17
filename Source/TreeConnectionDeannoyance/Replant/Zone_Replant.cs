@@ -7,16 +7,17 @@ using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
-	public class Zone_Replant : Zone
+	public class Zone_Replant : Zone, IStoreSettingsParent
 	{
 		public Zone_Replant() { }
 
 		public Zone_Replant(ZoneManager zoneManager) : base("TreeDesireDeannoyance_ZoneReplant".Translate(), zoneManager)
 		{
-			replantFilter = new ThingFilter();
-			replantFilter.CopyAllowancesFrom(DefaultReplantFilter);
+			//replantFilter = new ThingFilter();
+			//replantFilter.CopyAllowancesFrom(DefaultReplantFilter);
+			settings = new StorageSettings(this);
 		}
-
+		/*
 		public ThingFilter ReplantFilter
 		{
 			get
@@ -59,7 +60,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				return replantFilterFixed;
 			}
 		}
-
+		*/
 		protected override Color NextZoneColor
 		{
 			get
@@ -102,7 +103,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			base.ExposeData();
 			//Scribe_Values.Look(ref enabled, "enabled", true);
-			Scribe_Deep.Look(ref replantFilter, "replantFilter", Array.Empty<object>());
+			//Scribe_Deep.Look(ref replantFilter, "replantFilter", Array.Empty<object>());
+			Scribe_Deep.Look(ref settings, "settings", new object[] { this });
 		}
 
 		public override IEnumerable<InspectTabBase> GetInspectTabs()
@@ -114,6 +116,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			yield return new Command_Hide_ZoneReplant(this);
 			foreach (Gizmo gizmo in base.GetGizmos()) { yield return gizmo; }
+			foreach (Gizmo gizmo2 in StorageSettingsClipboard.CopyPasteGizmosFor(settings))
+			{
+				yield return gizmo2;
+			}
 		}
 
 		public override IEnumerable<Gizmo> GetZoneAddGizmos()
@@ -127,8 +133,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 		};
 
 		//public bool enabled;
-		private ThingFilter replantFilter;
-		private ThingFilter replantFilterDefault;
-		private ThingFilter replantFilterFixed;
+		//private ThingFilter replantFilter;
+		//private ThingFilter replantFilterDefault;
+		//private ThingFilter replantFilterFixed;
+		public StorageSettings settings;
 	}
 }
