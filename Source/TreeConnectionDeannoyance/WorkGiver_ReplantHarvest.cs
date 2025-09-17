@@ -11,11 +11,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 	public class WorkGiver_ReplantHarvest : WorkGiver_ReplantGrowBase
 	{
 		public override PathEndMode PathEndMode => PathEndMode.Touch;
-		
-		public override bool HasJobOnCell(Pawn pawn, IntVec3 c, bool forced = false)
-		{
-			throw new NotImplementedException();
-		}
 
 		public override bool ShouldSkip(Pawn pawn, bool forced = false)
 		{
