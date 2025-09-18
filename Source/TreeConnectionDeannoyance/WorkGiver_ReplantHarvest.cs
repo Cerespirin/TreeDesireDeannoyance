@@ -25,29 +25,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			return (zone?.allowHarvest ?? true) && PlantUtility.PawnWillingToCutPlant_Job(plant, pawn) && pawn.CanReserve(plant, 1, -1, null, forced);
 		}
 
-		public override bool ShouldSkip(Pawn pawn, bool forced = false)
-		{
-			return pawn.GetLord() != null || base.ShouldSkip(pawn, forced);
-		}
-
-		public override bool HasJobOnCell(Pawn pawn, IntVec3 c, bool forced = false)
-		{
-			Plant plant = c.GetPlant(pawn.Map);
-			if (plant == null) /**********************************************************************************************************/ { return false; }
-			if (!plant.HarvestableNow || plant.LifeStage != PlantLifeStage.Mature) /******************************************************/ { return false; }
-			if (!forced && plant.TryGetComp(out CompPlantPreventCutting compPlantPreventCutting) && compPlantPreventCutting.PreventCutting) { return false; }
-			if (!plant.CanYieldNow()) /***************************************************************************************************/ { return false; }
-			if (!plant.def.plant.autoHarvestable && !forced) /****************************************************************************/ { return false; }
-
-			Zone_Replant zone = c.GetZone(pawn.Map) as Zone_Replant;
-			return (zone?.allowCut ?? true) && PlantUtility.PawnWillingToCutPlant_Job(plant, pawn) && pawn.CanReserve(plant, 1, -1, null, forced);
-		}
-
-		public override bool ShouldSkip(Pawn pawn, bool forced = false)
-		{
-			return pawn.GetLord() != null || base.ShouldSkip(pawn, forced);
-		}
-
 		public override Job JobOnCell(Pawn pawn, IntVec3 c, bool forced = false)
 		{
 			Job job = JobMaker.MakeJob(JobDefOf.Harvest);
