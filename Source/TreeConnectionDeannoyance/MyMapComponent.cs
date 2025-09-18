@@ -10,7 +10,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public override void MapComponentTick()
 		{
 			// Long tick
-			if (Gen.IsHashIntervalTick(map, 2000))
+			if (map.IsHashIntervalTick(2000))
 			{
 
 			}
