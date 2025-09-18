@@ -51,8 +51,18 @@
       <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HarmonyPatches\HarmonyPatch_HaulAIUtility_HaulablePlaceValidator.cs" />
+    <Compile Include="Replant\Designator_ZoneAdd_Replant_Expand.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_DesignatorReplant_MiniToInstallOrBuildingToReinstall.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_CompAutoCut_DesignatePlantsToCut.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_JobMaker_MakeJob.cs" />
@@ -62,6 +72,13 @@
     <Compile Include="MyGameComponent.cs" />
     <Compile Include="MyStaticConstructor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Replant\Designator_ZoneAdd_Replant.cs" />
+    <Compile Include="Replant\Command_Hide_ZoneReplant.cs" />
+    <Compile Include="Replant\ITab_Replant.cs" />
+    <Compile Include="Replant\Zone_Replant.cs" />
+    <Compile Include="WorkGiver_ReplantClear.cs" />
+    <Compile Include="WorkGiver_ReplantHarvest.cs" />
+    <Compile Include="WorkGiver_ReplantGrowBase.cs" />
     <Compile Include="WorkGiver_Forage.cs" />
     <Compile Include="WorkGiver_AutoReplant.cs" />
   </ItemGroup>

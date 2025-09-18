@@ -5,4 +5,16 @@
 		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_AutoReplant</giverClass>
 		<priorityInType>16</priorityInType>
 	</WorkGiverDef>
+
+	<WorkGiverDef ParentName="GrowerHarvest">
+		<defName>TreeDesireDeannoyance_ReplantHarvest</defName>
+		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_ReplantHarvest</giverClass>
+	</WorkGiverDef>
+
+	<WorkGiverDef ParentName="PlantsCut">
+		<defName>TreeDesireDeannoyance_ReplantClear</defName>
+		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_ReplantClear</giverClass>
+		<scanThings>false</scanThings>
+		<scanCells>true</scanCells>
+	</WorkGiverDef>
 </Defs>
