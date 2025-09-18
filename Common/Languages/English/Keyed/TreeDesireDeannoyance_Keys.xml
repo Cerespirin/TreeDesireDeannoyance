@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <LanguageData>
 	<TreeDesireDeannoyance_ToggleExtract>Always extract trees</TreeDesireDeannoyance_ToggleExtract>
-	<TreeDesireDeannoyance_ToggleReplant>Auto replant trees</TreeDesireDeannoyance_ToggleReplant>
 	<TreeDesireDeannoyance_ZoneReplant>Replanting zone</TreeDesireDeannoyance_ZoneReplant>
 	<TreeDesireDeannoyance_DesignatorReplantZoneDesc>-todo-</TreeDesireDeannoyance_DesignatorReplantZoneDesc>
 	<TreeDesireDeannoyance_ReplantGroup>replant</TreeDesireDeannoyance_ReplantGroup>
