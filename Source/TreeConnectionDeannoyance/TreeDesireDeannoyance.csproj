@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HarmonyPatches\HarmonyPatch_HaulAIUtility_HaulablePlaceValidator.cs" />
     <Compile Include="Replant\Designator_ZoneAdd_Replant_Expand.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_DesignatorReplant_MiniToInstallOrBuildingToReinstall.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_CompAutoCut_DesignatePlantsToCut.cs" />
@@ -75,6 +76,9 @@
     <Compile Include="Replant\Command_Hide_ZoneReplant.cs" />
     <Compile Include="Replant\ITab_Replant.cs" />
     <Compile Include="Replant\Zone_Replant.cs" />
+    <Compile Include="WorkGiver_ReplantClear.cs" />
+    <Compile Include="WorkGiver_ReplantHarvest.cs" />
+    <Compile Include="WorkGiver_ReplantGrowBase.cs" />
     <Compile Include="WorkGiver_Forage.cs" />
     <Compile Include="WorkGiver_AutoReplant.cs" />
   </ItemGroup>

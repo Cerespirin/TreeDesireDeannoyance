@@ -27,41 +27,11 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public bool StorageTabVisible => true;
 
-		/*
-		public void DesignatePlantsToReplant()
-		{
-			IEnumerable<Thing> things = Map.listerThings.AllThings.Where(t => t is MinifiedTree);
-			MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
-
-			foreach (Thing thing in things)
-			{
-				if (InstallBlueprintUtility.ExistingBlueprintFor(thing) != null) { continue; }
-
-				Gizmo gizmo = thing.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
-
-				// I *still* can't believe that designators find their owners based on what the player has selected...
-				try
-				{
-					Designator_Replant designator = (Designator_Replant)gizmo;
-					component.designatorOwners.Add(gizmo, thing);
-
-					IEnumerable<IntVec3> cells = Cells.Where(c1 => designator.CanDesignateCell(c1));
-					if (cells.Any()) 
-					{ 
-						designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(thing.Position)).First());
-					}
-				}
-				finally
-				{
-					component.designatorOwners.Remove(gizmo);
-				}
-			}
-		}
-		*/
 		public override void ExposeData()
 		{
 			base.ExposeData();
 			//Scribe_Values.Look(ref enabled, "enabled", true);
+			Scribe_Values.Look(ref allowCut, "allowCut", false);
 			Scribe_Deep.Look(ref settings, "settings", new object[] { this });
 		}
 
@@ -78,6 +48,28 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				yield return gizmo2;
 			}
+			yield return new Command_Toggle
+			{
+				defaultLabel = "CommandAllowCut".Translate(),
+				defaultDesc = "CommandAllowCutDesc".Translate(),
+				icon = Designator_PlantsCut.IconTex,
+				isActive = () => allowCut,
+				toggleAction = delegate ()
+				{
+					allowCut = !allowCut;
+				}
+			};
+			yield return new Command_Toggle
+			{
+				defaultLabel = "TreeDesireDeannoyance_ZoneReplant_AllowHarvest".Translate(),
+				defaultDesc = "TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc".Translate(),
+				icon = ContentFinder<Texture2D>.Get("UI/Designators/Harvest"),
+				isActive = () => allowHarvest,
+				toggleAction = delegate ()
+				{
+					allowHarvest = !allowHarvest;
+				}
+			};
 		}
 
 		public override IEnumerable<Gizmo> GetZoneAddGizmos()
@@ -115,6 +107,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 		};
 
 		//public bool enabled;
+		public bool allowCut = false;
+		public bool allowHarvest = false;
 		public StorageSettings settings;
 		private static StorageSettings cachedFixedSettings;
 	}
