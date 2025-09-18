@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
@@ -31,7 +33,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 					{
 						component.designatorOwners.Add(gizmo, thing);
 
-						IEnumerable<IntVec3> cells = MyHelper.GetReplantCells(thing, designator); //t.Map.GetReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
+						IEnumerable<IntVec3> cells = GetReplantCells(thing, designator); //t.Map.GetReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
 						if (!cells.Any()) { return; }
 
 						designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(thing.Position)).First());
@@ -42,6 +44,15 @@ namespace Cerespirin.TreeDesireDeannoyance
 					}
 				}
 			}
+		}
+
+		private static IEnumerable<IntVec3> GetReplantCells(Thing thing, Designator_Replant designator)
+		{
+			return from Zone_Replant zone in thing.Map.zoneManager.AllZones.Where(z => z.GetType() == typeof(Zone_Replant))
+					 where zone.GetStoreSettings().filter.Allows(thing)
+					 from IntVec3 cell in zone.Cells
+					 where designator.CanDesignateCell(cell)
+					 select cell;
 		}
 	}
 }
