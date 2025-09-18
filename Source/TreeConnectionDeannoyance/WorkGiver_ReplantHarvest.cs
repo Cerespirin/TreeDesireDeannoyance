@@ -25,6 +25,11 @@ namespace Cerespirin.TreeDesireDeannoyance
 			return (zone?.allowHarvest ?? true) && PlantUtility.PawnWillingToCutPlant_Job(plant, pawn) && pawn.CanReserve(plant, 1, -1, null, forced);
 		}
 
+		public override bool ShouldSkip(Pawn pawn, bool forced = false)
+		{
+			return pawn.GetLord() != null || base.ShouldSkip(pawn, forced);
+		}
+
 		public override Job JobOnCell(Pawn pawn, IntVec3 c, bool forced = false)
 		{
 			Job job = JobMaker.MakeJob(JobDefOf.Harvest);
