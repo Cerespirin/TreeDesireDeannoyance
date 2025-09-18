@@ -9,7 +9,6 @@ using Verse.AI;
 namespace Cerespirin.TreeDesireDeannoyance
 {
 	[HarmonyPatch(typeof(HaulAIUtility), "HaulablePlaceValidator")]
-	[HarmonyDebug]
 	public static class HarmonyPatch_HaulAIUtility_HaulablePlaceValidator
 	{
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
