@@ -11,14 +11,12 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public static void Postfix(ref Job __result)
 		{
-			if (!Current.Game.GetComponent<MyGameComponent>().alwaysExtractTrees) return;
-
-			if (__result.def == JobDefOf.Harvest)
+			if (MyHelper.ExtractSetting && __result.def == JobDefOf.Harvest)
 			{
 				// GetTargetQueue cannot return null, but can return an empty list!
 				LocalTargetInfo firstTarget = __result.targetQueueA.FirstOrFallback(null);
 
-				if (firstTarget == null) return;
+				if (firstTarget == null) { return; }
 
 				if (firstTarget.Thing.IsRelevantToTreeLovers())
 				{
@@ -28,7 +26,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 					}
 					else
 					{
-						if (!firstTarget.Thing.Map.designationManager.HasMapDesignationOn(firstTarget.Thing))
+						DesignationManager designationManager = firstTarget.Thing.Map.designationManager;
+						if (!designationManager.HasMapDesignationOn(firstTarget.Thing) || designationManager.DesignationOn(__result.targetA.Thing, DesignationDefOf.ExtractTree) != null)
 						{
 							__result.def = JobDefOf.ExtractTree;
 							__result.targetA = firstTarget;
