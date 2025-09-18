@@ -1,7 +1,9 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
+using Verse.Noise;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
@@ -27,11 +29,17 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override AcceptanceReport CanDesignateCell(IntVec3 c)
 		{
-			if (c.GetTerrain(Map).passability == Traversability.Impassable)
+			Map map = Map;
+			if (!base.CanDesignateCell(c)) /******************************/ { return false; }
+			if (c.GetTerrain(map).passability == Traversability.Impassable) { return false; }
+
+			TerrainDef terrain = c.GetTerrain(map);
+
+			foreach (ThingDef plantDef in Extractables)
 			{
-				return false;
+				return true;
 			}
-			return base.CanDesignateCell(c);
+			return false;
 		}
 
 		public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
@@ -49,5 +57,19 @@ namespace Cerespirin.TreeDesireDeannoyance
 				yield break;
 			}
 		}
+
+		public static IEnumerable<ThingDef> Extractables
+		{
+			get
+			{
+				if (cachedExtractables == null)
+				{
+					cachedExtractables = DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable);
+				}
+				return cachedExtractables;
+			}
+		}
+
+		private static IEnumerable<ThingDef> cachedExtractables;
 	}
 }
