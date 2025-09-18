@@ -14,7 +14,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
 		{
-			LocalBuilder newLocal = generator.DeclareLocal(typeof(bool));
+			LocalBuilder newLocal = generator.DeclareLocal(typeof(Zone));
 			Label newLabel = generator.DefineLabel();
 			byte state = 0;
 
