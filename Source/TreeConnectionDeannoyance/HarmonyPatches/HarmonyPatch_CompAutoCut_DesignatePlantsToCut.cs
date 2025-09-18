@@ -15,6 +15,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			List<CodeInstruction> instructionsAsList = instructions.ToList();
 			LocalBuilder extractSetting = generator.DeclareLocal(typeof(bool));
+			bool didTheThing = false;
 
 			foreach (CodeInstruction instruction in instructionsAsList)
 			{
@@ -35,6 +36,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 				{
 					yield return instruction;
 				}
+			}
+			if (!didTheThing)
+			{
+				Log.Error("[TreeDesireDeannoyance] HarmonyPatch_CompAutoCut_DesignatePlantsToCut: unable to find injection point. This was likely due to a mod incompatibility; please report this to the mod author.");
 			}
 		}
 
