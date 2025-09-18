@@ -13,6 +13,7 @@
 		<value>PlantsCut</value>
 	</Operation>
 
+	<!-- Insert our zone designator. -->
 	<Operation Class="PatchOperationInsert">
 		<xpath>Defs/DesignationCategoryDef[defName="Zone"]/specialDesignatorClasses/li[text()="Designator_ZoneDelete"]</xpath>
 		<value>
