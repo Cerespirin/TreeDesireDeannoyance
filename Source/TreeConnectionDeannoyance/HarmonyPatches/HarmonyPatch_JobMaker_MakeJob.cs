@@ -11,9 +11,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public static void Postfix(ref Job __result)
 		{
-			if (!Current.Game.GetComponent<MyGameComponent>().alwaysExtractTrees) return;
-
-			if (__result.def == JobDefOf.CutPlant && __result.targetA.Thing.IsRelevantToTreeLovers())
+			if (MyHelper.ExtractSetting && __result.def == JobDefOf.CutPlant && __result.targetA.Thing.IsRelevantToTreeLovers())
 			{
 				DesignationManager designationManager = __result.targetA.Thing.Map.designationManager;
 				if (!designationManager.HasMapDesignationOn(__result.targetA.Thing) || designationManager.DesignationOn(__result.targetA.Thing, DesignationDefOf.ExtractTree) != null)
