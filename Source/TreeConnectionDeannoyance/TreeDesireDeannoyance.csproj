@@ -80,7 +80,6 @@
     <Compile Include="WorkGiver_ReplantClear.cs" />
     <Compile Include="WorkGiver_ReplantHarvest.cs" />
     <Compile Include="WorkGiver_ReplantGrowBase.cs" />
-    <Compile Include="WorkGiver_Forage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
