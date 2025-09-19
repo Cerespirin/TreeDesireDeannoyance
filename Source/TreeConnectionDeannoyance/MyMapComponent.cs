@@ -61,7 +61,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		private static IEnumerable<IntVec3> GetReplantCells(Thing thing, Designator_Replant designator)
 		{
 			return from Zone_Replant zone in thing.Map.zoneManager.AllZones.OfType<Zone_Replant>().Where(z => z.allowReplant)
-					 where zone.GetStoreSettings().filter.Allows(thing)
+					 where zone.settings.filter.Allows(thing)
 					 from IntVec3 cell in zone.Cells
 					 where designator.CanDesignateCell(cell)
 					 select cell;
