@@ -6,6 +6,7 @@ using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
+	[StaticConstructorOnStartup]
 	public class Zone_Replant : Zone, IStoreSettingsParent
 	{
 		public Zone_Replant() { }
@@ -55,7 +56,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				defaultLabel = "TreeDesireDeannoyance_ZoneReplant_AllowReplant".Translate(),
 				defaultDesc = "TreeDesireDeannoyance_ZoneReplant_AllowReplantDesc".Translate(),
 				hotKey = KeyBindingDefOf.Command_ItemForbid,
-				icon = ContentFinder<Texture2D>.Get("UI/Designators/ReplantTree"),
+				icon = cachedIconReplant,
 				isActive = () => allowReplant,
 				toggleAction = delegate ()
 				{
@@ -77,7 +78,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				defaultLabel = "TreeDesireDeannoyance_ZoneReplant_AllowHarvest".Translate(),
 				defaultDesc = "TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc".Translate(),
-				icon = ContentFinder<Texture2D>.Get("UI/Designators/Harvest"),
+				icon = cachedIconHarcest,
 				isActive = () => allowHarvest,
 				toggleAction = delegate ()
 				{
@@ -125,5 +126,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public bool allowHarvest = false;
 		public StorageSettings settings;
 		private static StorageSettings cachedFixedSettings;
+		private static readonly Texture2D cachedIconReplant = ContentFinder<Texture2D>.Get("UI/Designators/ReplantTree");
+		private static readonly Texture2D cachedIconHarcest = ContentFinder<Texture2D>.Get("UI/Designators/Harvest");
 	}
 }
