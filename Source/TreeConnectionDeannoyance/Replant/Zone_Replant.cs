@@ -103,7 +103,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				cachedFixedSettings = new StorageSettings();
 
-				foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable))
+				foreach (ThingDef thingDef in MyHelper.cachedExtractables)
 				{
 					cachedFixedSettings.filter.SetAllow(thingDef, true);
 				}

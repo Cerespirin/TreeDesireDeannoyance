@@ -44,7 +44,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			if (terrain.passability != Traversability.Impassable)
 			{
 				bool canEverTerraform = CompTerraformer.CanEverConvertCell(c, map, null);
-				foreach (ThingDef plantDef in cachedExtractables)
+				foreach (ThingDef plantDef in MyHelper.cachedExtractables)
 				{
 					if (plantDef.plant.fertilityMin > terrain.fertility && !plantDef.plant.completelyIgnoreFertility) { continue; }
 					if (plantDef.plant.terraformable && !canEverTerraform) /****************************************/ { continue; }
@@ -73,7 +73,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 		}
 
-		private static readonly IEnumerable<ThingDef> cachedExtractables = DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable);
 		private static readonly Dictionary<TerrainDef, bool> cachedTerrains = new Dictionary<TerrainDef, bool>();
 	}
 }
