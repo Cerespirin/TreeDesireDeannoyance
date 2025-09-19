@@ -46,10 +46,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 				bool canEverTerraform = CompTerraformer.CanEverConvertCell(c, map, null);
 				foreach (ThingDef plantDef in cachedExtractables)
 				{
-					if (!plantDef.plant.completelyIgnoreFertility && plantDef.plant.fertilityMin > terrain.fertility) { continue; }
-					if (plantDef.plant.terraformable && !canEverTerraform) /*****************************************/ { continue; }
+					if (plantDef.plant.fertilityMin > terrain.fertility && !plantDef.plant.completelyIgnoreFertility) { continue; }
+					if (plantDef.plant.terraformable && !canEverTerraform) /****************************************/ { continue; }
 					if (plantDef.plant.WildTerrainTags.Count > 0 && !plantDef.plant.WildTerrainTags.Overlaps(terrain.tags.OrElseEmptyEnumerable())) { continue; }
-					if (plantDef.plant.terrainBlacklist?.Contains(terrain) ?? false) /********************************/{ continue; }
+					if (plantDef.plant.terrainBlacklist?.Contains(terrain) ?? false) /*******************************/{ continue; }
 					result = true;
 					break;
 				}
