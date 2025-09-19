@@ -62,13 +62,12 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			get
 			{
-				if (!ShowRightClickHideOptions)
+				if (ShowRightClickHideOptions)
 				{
-					yield break;
-				}
-				foreach (FloatMenuOption floatMenuOption in Command_Hide_ZoneReplant.GetHideOptions())
-				{
-					yield return floatMenuOption;
+					foreach (FloatMenuOption floatMenuOption in Command_Hide_ZoneReplant.GetHideOptions())
+					{
+						yield return floatMenuOption;
+					}
 				}
 				yield break;
 			}
