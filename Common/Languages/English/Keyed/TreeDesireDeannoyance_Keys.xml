@@ -5,6 +5,8 @@
 	<TreeDesireDeannoyance_DesignatorReplantZoneDesc>-todo-</TreeDesireDeannoyance_DesignatorReplantZoneDesc>
 	<TreeDesireDeannoyance_ReplantGroup>replant</TreeDesireDeannoyance_ReplantGroup>
 	<TreeDesireDeannoyance_TabReplant>Replant</TreeDesireDeannoyance_TabReplant>
+	<TreeDesireDeannoyance_ZoneReplant_AllowReplant>Allow replant</TreeDesireDeannoyance_ZoneReplant_AllowReplant>
+	<TreeDesireDeannoyance_ZoneReplant_AllowReplantDesc>-todo-</TreeDesireDeannoyance_ZoneReplant_AllowReplantDesc>
 	<TreeDesireDeannoyance_ZoneReplant_AllowHarvest>Allow harvest</TreeDesireDeannoyance_ZoneReplant_AllowHarvest>
 	<TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>-todo-</TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>
 </LanguageData>
