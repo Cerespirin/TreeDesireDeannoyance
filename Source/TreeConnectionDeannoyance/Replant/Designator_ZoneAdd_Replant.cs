@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using Verse;
 using Verse.Noise;
@@ -27,19 +28,34 @@ namespace Cerespirin.TreeDesireDeannoyance
 			soundSucceeded = SoundDefOf.Designate_ExtractTree;
 		}
 
+		// This method runs every single tick for every cell the user is dragging the designator over, so heavily optimize this!
 		public override AcceptanceReport CanDesignateCell(IntVec3 c)
 		{
-			Map map = Map;
-			if (!base.CanDesignateCell(c)) /******************************/ { return false; }
-			if (c.GetTerrain(map).passability == Traversability.Impassable) { return false; }
+			if (!base.CanDesignateCell(c)) { return false; }
 
+			Map map = Map;
 			TerrainDef terrain = c.GetTerrain(map);
 
-			foreach (ThingDef plantDef in Extractables)
+			// This is probably the biggest optimization possible. If we've done the work before, don't do it again!
+			if (cachedTerrains.TryGetValue(terrain, out bool value)) { return value; }
+
+			bool result = false;
+
+			if (terrain.passability != Traversability.Impassable)
 			{
-				return true;
+				bool canEverTerraform = CompTerraformer.CanEverConvertCell(c, map, null);
+				foreach (ThingDef plantDef in cachedExtractables)
+				{
+					if (!plantDef.plant.completelyIgnoreFertility && plantDef.plant.fertilityMin > terrain.fertility) { continue; }
+					if (plantDef.plant.terraformable && !canEverTerraform) /*****************************************/ { continue; }
+					if (plantDef.plant.WildTerrainTags.Count > 0 && !plantDef.plant.WildTerrainTags.Overlaps(terrain.tags.OrElseEmptyEnumerable())) { continue; }
+					if (plantDef.plant.terrainBlacklist?.Contains(terrain) ?? false) /********************************/{ continue; }
+					result = true;
+					break;
+				}
 			}
-			return false;
+			cachedTerrains.Add(terrain, result);
+			return result;
 		}
 
 		public override IEnumerable<FloatMenuOption> RightClickFloatMenuOptions
@@ -58,18 +74,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			}
 		}
 
-		public static IEnumerable<ThingDef> Extractables
-		{
-			get
-			{
-				if (cachedExtractables == null)
-				{
-					cachedExtractables = DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable);
-				}
-				return cachedExtractables;
-			}
-		}
-
-		private static IEnumerable<ThingDef> cachedExtractables;
+		private static readonly IEnumerable<ThingDef> cachedExtractables = DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable);
+		private static readonly Dictionary<TerrainDef, bool> cachedTerrains = new Dictionary<TerrainDef, bool>();
 	}
 }
