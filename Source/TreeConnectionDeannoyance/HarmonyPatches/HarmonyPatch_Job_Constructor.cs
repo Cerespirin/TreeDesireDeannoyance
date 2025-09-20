@@ -5,7 +5,7 @@ using Verse.AI;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
-	[HarmonyPatch(typeof(Job), MethodType.Constructor, new Type[] { typeof(JobDef), typeof(Thing) })]
+	[HarmonyPatch(typeof(Job), MethodType.Constructor, new Type[] { typeof(JobDef), typeof(LocalTargetInfo) })]
 	public static class HarmonyPatch_Job_Constructor
 	{
 		public static void Postfix(ref Job __instance)
