@@ -1,18 +1,12 @@
 ﻿using HarmonyLib;
 using RimWorld;
-using System.Reflection;
 using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
-	[HarmonyPatch]
+	[HarmonyPatch(typeof(Designator_Install), "MiniToInstallOrBuildingToReinstall", MethodType.Getter)]
 	public static class HarmonyPatch_DesignatorReplant_MiniToInstallOrBuildingToReinstall
 	{
-		public static MethodBase TargetMethod()
-		{
-			return typeof(Designator_Install).GetProperty("MiniToInstallOrBuildingToReinstall", BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true);
-		}
-
 		public static bool Prefix(ref Thing __result, Gizmo __instance)
 		{
 			MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
