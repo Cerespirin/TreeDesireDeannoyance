@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HarmonyPatches\HarmonyPatch_HaulAIUtility_HaulablePlaceValidator.cs" />
+    <Compile Include="HarmonyPatches\HarmonyPatch_Job_Constructor.cs" />
     <Compile Include="Replant\Designator_ZoneAdd_Replant_Expand.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_DesignatorReplant_MiniToInstallOrBuildingToReinstall.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_CompAutoCut_DesignatePlantsToCut.cs" />
