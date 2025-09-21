@@ -1,19 +1,18 @@
 ﻿using HarmonyLib;
-using RimWorld;
 using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
-	[HarmonyPatch(typeof(Designator_Install), "MiniToInstallOrBuildingToReinstall", MethodType.Getter)]
-	public static class HarmonyPatch_DesignatorReplant_MiniToInstallOrBuildingToReinstall
+	[HarmonyPatch(typeof(Designator), nameof(Designator.Map), MethodType.Getter)]
+	public static class HarmonyPatch_Designator_Map
 	{
-		public static bool Prefix(ref Thing __result, Gizmo __instance)
+		public static bool Prefix(ref Map __result, Gizmo __instance)
 		{
 			MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
 
 			if (component.designatorOwners.TryGetValue(__instance, out Thing owner))
 			{
-				__result = owner;
+				__result = owner.Map;
 				return false;
 			}
 			return true;

@@ -6,6 +6,7 @@ using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
+	[StaticConstructorOnStartup]
 	public class Zone_Replant : Zone, IStoreSettingsParent
 	{
 		public Zone_Replant() { }
@@ -30,8 +31,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public override void ExposeData()
 		{
 			base.ExposeData();
-			//Scribe_Values.Look(ref enabled, "enabled", true);
+			Scribe_Values.Look(ref allowReplant, "allowReplant", true);
 			Scribe_Values.Look(ref allowCut, "allowCut", false);
+			Scribe_Values.Look(ref allowHarvest, "allowHarvest", false);
 			Scribe_Deep.Look(ref settings, "settings", new object[] { this });
 		}
 
@@ -48,6 +50,19 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				yield return gizmo2;
 			}
+
+			yield return new Command_Toggle
+			{
+				defaultLabel = "TreeDesireDeannoyance_ZoneReplant_AllowReplant".Translate(),
+				defaultDesc = "TreeDesireDeannoyance_ZoneReplant_AllowReplantDesc".Translate(),
+				hotKey = KeyBindingDefOf.Command_ItemForbid,
+				icon = cachedIconReplant,
+				isActive = () => allowReplant,
+				toggleAction = delegate ()
+				{
+					allowReplant = !allowReplant;
+				}
+			};
 			yield return new Command_Toggle
 			{
 				defaultLabel = "CommandAllowCut".Translate(),
@@ -63,7 +78,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				defaultLabel = "TreeDesireDeannoyance_ZoneReplant_AllowHarvest".Translate(),
 				defaultDesc = "TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc".Translate(),
-				icon = ContentFinder<Texture2D>.Get("UI/Designators/Harvest"),
+				icon = cachedIconHarcest,
 				isActive = () => allowHarvest,
 				toggleAction = delegate ()
 				{
@@ -88,7 +103,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				cachedFixedSettings = new StorageSettings();
 
-				foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable))
+				foreach (ThingDef thingDef in MyHelper.cachedExtractables)
 				{
 					cachedFixedSettings.filter.SetAllow(thingDef, true);
 				}
@@ -106,10 +121,12 @@ namespace Cerespirin.TreeDesireDeannoyance
 			new ITab_Replant()
 		};
 
-		//public bool enabled;
+		public bool allowReplant = true;
 		public bool allowCut = false;
 		public bool allowHarvest = false;
 		public StorageSettings settings;
 		private static StorageSettings cachedFixedSettings;
+		private static readonly Texture2D cachedIconReplant = ContentFinder<Texture2D>.Get("UI/Designators/ReplantTree");
+		private static readonly Texture2D cachedIconHarcest = ContentFinder<Texture2D>.Get("UI/Designators/Harvest");
 	}
 }

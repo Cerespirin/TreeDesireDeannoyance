@@ -2,25 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
+using Verse.AI;
 
 namespace Cerespirin.TreeDesireDeannoyance
 {
 	public static class MyHelper
 	{
 		public static bool ExtractSetting => Current.Game.GetComponent<MyGameComponent>().alwaysExtractTrees;
-		public static bool ReplantSetting => Current.Game.GetComponent<MyGameComponent>().autoReplantTrees;
+
 		public static bool IsRelevantToTreeLovers(this Thing thing) => thing.def.plant.IsTree && thing.def.plant.treeLoversCareIfChopped;
 		public static bool IsRelevantToTreeLovers(this ThingDef def) => def.plant.IsTree && def.plant.treeLoversCareIfChopped;
-		//public static Area GetReplantArea(this Map map) => map.areaManager.GetLabeled("Replant");
 		public static Area GetForageArea(this Map map) => map.areaManager.GetLabeled("Forage");
 
-		public static IEnumerable<IntVec3> GetReplantCells(Thing thing, Designator_Replant designator)
+		public static void PossiblyChangeCutJobToHarvest(ref Job job)
 		{
-			return from Zone_Replant zone in thing.Map.zoneManager.AllZones.Where(z => z.GetType() == typeof(Zone_Replant))
-					 where zone.GetStoreSettings().filter.Allows(thing)
-					 from IntVec3 cell in zone.Cells
-					 where designator.CanDesignateCell(cell)
-					 select cell;
+			if (MyHelper.ExtractSetting && job.def == JobDefOf.CutPlant && job.targetA.Thing.IsRelevantToTreeLovers())
+			{
+				DesignationManager designationManager = job.targetA.Thing.Map.designationManager;
+				if (!designationManager.HasMapDesignationOn(job.targetA.Thing) || designationManager.DesignationOn(job.targetA.Thing, DesignationDefOf.ExtractTree) != null)
+				{
+					job.def = JobDefOf.ExtractTree;
+					job.ignoreDesignations = true;
+				}
+			}
 		}
+
+		public static readonly IEnumerable<ThingDef> cachedExtractables = DefDatabase<ThingDef>.AllDefs.Where(t => t.IsPlant && t.Minifiable);
 	}
 }

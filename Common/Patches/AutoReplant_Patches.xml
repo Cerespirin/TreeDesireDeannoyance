@@ -2,12 +2,6 @@
 <Patch>
 	<!-- Adds name so it can inherited from. -->
 	<Operation Class="PatchOperationAttributeAdd">
-		<xpath>Defs/WorkGiverDef[defName="Replant"]</xpath>
-		<attribute>Name</attribute>
-		<value>Replant</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAttributeAdd">
 		<xpath>Defs/WorkGiverDef[defName="GrowerHarvest"]</xpath>
 		<attribute>Name</attribute>
 		<value>GrowerHarvest</value>
@@ -19,6 +13,7 @@
 		<value>PlantsCut</value>
 	</Operation>
 
+	<!-- Insert our zone designator. -->
 	<Operation Class="PatchOperationInsert">
 		<xpath>Defs/DesignationCategoryDef[defName="Zone"]/specialDesignatorClasses/li[text()="Designator_ZoneDelete"]</xpath>
 		<value>
