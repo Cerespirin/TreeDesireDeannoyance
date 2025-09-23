@@ -1,7 +1,7 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace Cerespirin.TreeDesireDeannoyance
+namespace Cerespirin.TreeDesireDeannoyance.ZoneReplant
 {
 	public class Designator_ZoneAdd_Replant_Expand : Designator_ZoneAdd_Replant
 	{

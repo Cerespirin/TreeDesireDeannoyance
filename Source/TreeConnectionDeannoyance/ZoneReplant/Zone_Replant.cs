@@ -1,10 +1,9 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Verse;
 
-namespace Cerespirin.TreeDesireDeannoyance
+namespace Cerespirin.TreeDesireDeannoyance.ZoneReplant
 {
 	[StaticConstructorOnStartup]
 	public class Zone_Replant : Zone, IStoreSettingsParent

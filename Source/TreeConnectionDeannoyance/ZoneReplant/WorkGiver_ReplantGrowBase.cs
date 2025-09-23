@@ -4,7 +4,7 @@ using System.Linq;
 using Verse;
 using Verse.AI;
 
-namespace Cerespirin.TreeDesireDeannoyance
+namespace Cerespirin.TreeDesireDeannoyance.ZoneReplant
 {
 	public abstract class WorkGiver_ReplantGrowBase : WorkGiver_Scanner
 	{

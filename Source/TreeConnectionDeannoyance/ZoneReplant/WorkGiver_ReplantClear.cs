@@ -2,7 +2,7 @@
 using Verse;
 using Verse.AI;
 
-namespace Cerespirin.TreeDesireDeannoyance
+namespace Cerespirin.TreeDesireDeannoyance.ZoneReplant
 {
 	public class WorkGiver_ReplantClear : WorkGiver_ReplantGrowBase
 	{
