@@ -23,7 +23,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			{
 				cachedIcon = ContentFinder<Texture2D>.Get(IconTexPath);
 			}
-			foreach (FloatMenuOption floatMenuOption in ZoneTypeOptions<Zone_Replant>("TreeDesireDeannoyance_ReplantGroup".Translate(), cachedIcon))
+			foreach (FloatMenuOption floatMenuOption in ZoneTypeOptions<Zone_Replant>("TreeDesireDeannoyance_ITab_Replant_Group".Translate(), cachedIcon))
 			{
 				yield return floatMenuOption;
 			}
