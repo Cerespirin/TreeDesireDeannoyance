@@ -6,7 +6,7 @@
 	<TreeDesireDeannoyance_PlaySetting_ToggleExtract>Always extract trees</TreeDesireDeannoyance_PlaySetting_ToggleExtract>
 	<TreeDesireDeannoyance_ZoneReplant>Replanting zone</TreeDesireDeannoyance_ZoneReplant>
 	<TreeDesireDeannoyance_ZoneReplant_AllowReplant>Allow replant</TreeDesireDeannoyance_ZoneReplant_AllowReplant>
-	<TreeDesireDeannoyance_ZoneReplant_AllowReplantDesc>-todo-</TreeDesireDeannoyance_ZoneReplant_AllowReplantDesc>
+	<TreeDesireDeannoyance_ZoneReplant_AllowReplantDesc>When disabled, colonists will never replant in this zone. They will still harvest.</TreeDesireDeannoyance_ZoneReplant_AllowReplantDesc>
 	<TreeDesireDeannoyance_ZoneReplant_AllowHarvest>Allow harvest</TreeDesireDeannoyance_ZoneReplant_AllowHarvest>
-	<TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>-todo-</TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>
+	<TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>When disabled, colonists will never harvest plants in this zone. They will still replant.</TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>
 </LanguageData>
