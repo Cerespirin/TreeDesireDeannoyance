@@ -27,9 +27,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 		}
 
 		public bool alwaysExtractTrees = false;
+		public Dictionary<ThingDef, ForageCategory> forageSettings = new Dictionary<ThingDef, ForageCategory>();
 		public readonly Dictionary<Gizmo, Thing> designatorOwners = new Dictionary<Gizmo, Thing>();
 		private static MyGameComponent cachedComponent;
-
-		public Dictionary<ThingDef, ForageCategory> forageSettings = new Dictionary<ThingDef, ForageCategory>();
 	}
 }
