@@ -8,7 +8,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public ITab_Replant()
 		{
-			labelKey = "TreeDesireDeannoyance_TabReplant";
+			labelKey = "TreeDesireDeannoyance_ITab_Replant";
 		}
 	}
 }
