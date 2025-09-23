@@ -17,6 +17,11 @@ namespace Cerespirin.TreeDesireDeannoyance.AreaForage
 			throw new NotImplementedException();
 		}
 
+		private static ForageCategory ForageSelectButton_ForageSetting(Plant plant)
+		{
+			return MyGameComponent.Cached.forageSettings.TryGetValue(plant.def);
+		}
+
 		private static readonly Texture2D ignoreIcon = ContentFinder<Texture2D>.Get("UI/Designators/Cancel");
 		private static readonly Texture2D harvestIcon = ContentFinder<Texture2D>.Get("UI/Designators/Harvest");
 		private static readonly Texture2D extractIcon = ContentFinder<Texture2D>.Get("UI/Designators/ExtractTree");

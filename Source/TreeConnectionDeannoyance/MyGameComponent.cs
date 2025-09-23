@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cerespirin.TreeDesireDeannoyance.AreaForage;
+using System.Collections.Generic;
 using Verse;
 
 namespace Cerespirin.TreeDesireDeannoyance
@@ -28,5 +29,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		public bool alwaysExtractTrees = false;
 		public readonly Dictionary<Gizmo, Thing> designatorOwners = new Dictionary<Gizmo, Thing>();
 		private static MyGameComponent cachedComponent;
+
+		public Dictionary<ThingDef, ForageCategory> forageSettings = new Dictionary<ThingDef, ForageCategory>();
 	}
 }
