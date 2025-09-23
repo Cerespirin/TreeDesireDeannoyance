@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AreaForage\Dialog_ForageSettings.cs" />
+    <Compile Include="AreaForage\ForageCategory.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_Designator_Map.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_HaulAIUtility_HaulablePlaceValidator.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_Job_Constructor.cs" />
