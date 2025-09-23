@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
@@ -15,7 +16,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			if (map.IsHashIntervalTick(2000))
 			{
 				DoAutoReplant();
-				DoForage();
+				//DoForage();
 			}
 		}
 
@@ -49,6 +50,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public void DoForage()
 		{
+			throw new NotImplementedException();
+			/*
 			foreach (Thing stump in map.listerThings.AllThings.Where(t => (t.def.plant?.isStump ?? false) && (map.GetForageArea()?[t.Position] ?? false)))
 			{
 				if (!stump.Map.designationManager.HasMapDesignationOn(stump))
@@ -56,6 +59,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 					stump.Map.designationManager.AddDesignation(new Designation(stump, DesignationDefOf.CutPlant));
 				}
 			}
+			*/
 		}
 
 		private static IEnumerable<IntVec3> GetReplantCells(Thing thing, Designator_Replant designator)
