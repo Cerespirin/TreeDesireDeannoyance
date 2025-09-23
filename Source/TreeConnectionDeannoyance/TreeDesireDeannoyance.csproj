@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AreaForage\Dialog_ForageSettings.cs" />
     <Compile Include="AreaForage\ForageUtility.cs" />
     <Compile Include="AreaForage\ForageCategory.cs" />
     <Compile Include="HarmonyPatches\HarmonyPatch_Designator_Map.cs" />
