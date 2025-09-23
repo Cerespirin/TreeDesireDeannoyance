@@ -22,7 +22,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 
 		public override void ExposeData()
 		{
-			Scribe_Values.Look(ref alwaysExtractTrees, "TreeDesireDeannoyance_AlwaysExtractTrees");
+			Scribe_Values.Look(ref alwaysExtractTrees, "alwaysExtractTrees");
+			Scribe_Collections.Look(ref forageSettings, "forageSettings", LookMode.Def, LookMode.Value);
 		}
 
 		public bool alwaysExtractTrees = false;
