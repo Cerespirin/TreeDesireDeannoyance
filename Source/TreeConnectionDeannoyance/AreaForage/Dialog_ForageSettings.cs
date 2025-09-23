@@ -17,17 +17,17 @@ namespace Cerespirin.TreeDesireDeannoyance.AreaForage
 			throw new NotImplementedException();
 		}
 
-		public static void DrawSettingButton(Rect rect, Plant plant)
+		public static void DrawSettingButton(Rect rect, ThingDef plant)
 		{
-			Widgets.Dropdown(rect, plant, new Func<Plant, ForageCategory>(ForageSelectButton_ForageSetting), new Func<Plant, IEnumerable<Widgets.DropdownMenuElement<ForageCategory>>>(ForageSelectButton_GenerateMenu), null, MedicalCareIcon(MyGameComponent.Cached.forageSettings.TryGetValue(plant.def)), null, null, null, true);
+			Widgets.Dropdown(rect, plant, new Func<ThingDef, ForageCategory>(ForageSelectButton_ForageSetting), new Func<ThingDef, IEnumerable<Widgets.DropdownMenuElement<ForageCategory>>>(ForageSelectButton_GenerateMenu), null, MedicalCareIcon(MyGameComponent.Cached.forageSettings.TryGetValue(plant)), null, null, null, true);
 		}
 
-		private static ForageCategory ForageSelectButton_ForageSetting(Plant plant)
+		private static ForageCategory ForageSelectButton_ForageSetting(ThingDef plant)
 		{
-			return MyGameComponent.Cached.forageSettings.TryGetValue(plant.def);
+			return MyGameComponent.Cached.forageSettings.TryGetValue(plant);
 		}
 
-		private static IEnumerable<Widgets.DropdownMenuElement<ForageCategory>> ForageSelectButton_GenerateMenu(Plant plant)
+		private static IEnumerable<Widgets.DropdownMenuElement<ForageCategory>> ForageSelectButton_GenerateMenu(ThingDef plant)
 		{
 			throw new NotImplementedException();
 		}
