@@ -17,6 +17,11 @@ namespace Cerespirin.TreeDesireDeannoyance.AreaForage
 			throw new NotImplementedException();
 		}
 
+		public static void DrawSettingButton(Rect rect, Plant plant)
+		{
+			Widgets.Dropdown<Plant, ForageCategory>(rect, plant, new Func<Plant, ForageCategory>(ForageSelectButton_ForageSetting), null, null, null, null, null, null);
+		}
+
 		private static ForageCategory ForageSelectButton_ForageSetting(Plant plant)
 		{
 			return MyGameComponent.Cached.forageSettings.TryGetValue(plant.def);
