@@ -1,5 +1,5 @@
 # Tree Desire Deannoyance
-Makes playing tree-huggers less tedious by adding two features that automate its most common tasks.
+Makes playing tree-huggers less tedious by adding several features that automate its most common tasks.
 ## Features
 ### Always Extract Trees Toggle
 While enabled you will not need to manually designate trees for extracting just to have your constructors and growers blatantly disregard your orders. Trees will *always* be extracted rather than cut unless *specifically* designated otherwise.
