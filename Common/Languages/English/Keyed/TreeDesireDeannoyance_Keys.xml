@@ -10,5 +10,5 @@
 	<TreeDesireDeannoyance_ZoneReplant_AllowCut>Allow cutting</TreeDesireDeannoyance_ZoneReplant_AllowCut>
 	<TreeDesireDeannoyance_ZoneReplant_AllowCutDesc>When disabled, colonists will never cut plants in this zone. They will still replant in spaces that are already empty, and harvest plants matching the zone filter.</TreeDesireDeannoyance_ZoneReplant_AllowCutDesc>
 	<TreeDesireDeannoyance_ZoneReplant_AllowHarvest>Allow harvest</TreeDesireDeannoyance_ZoneReplant_AllowHarvest>
-	<TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>When disabled, colonists will never harvest plants in this zone. They will still replant.</TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>
+	<TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>When disabled, colonists will never harvest plants in this zone. They will still replant.\n\nCAUTION: When enabled, colonists will cut fully grown trees even if Always Extract Trees is turned on!</TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>
 </LanguageData>
