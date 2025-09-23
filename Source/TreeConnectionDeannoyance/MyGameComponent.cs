@@ -5,8 +5,17 @@ namespace Cerespirin.TreeDesireDeannoyance
 {
 	public class MyGameComponent : GameComponent
 	{
-		public bool alwaysExtractTrees = false;
-		public Dictionary<Gizmo, Thing> designatorOwners = new Dictionary<Gizmo, Thing>();
+		public static MyGameComponent Cached
+		{
+			get
+			{
+				if (cachedComponent == null)
+				{
+					cachedComponent = Current.Game.GetComponent<MyGameComponent>();
+				}
+				return cachedComponent;
+			}
+		}
 
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Is part of a shipped public API.")]
 		public MyGameComponent(Game game) { }
@@ -15,5 +24,9 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			Scribe_Values.Look(ref alwaysExtractTrees, "TreeDesireDeannoyance_AlwaysExtractTrees");
 		}
+
+		public bool alwaysExtractTrees = false;
+		public readonly Dictionary<Gizmo, Thing> designatorOwners = new Dictionary<Gizmo, Thing>();
+		private static MyGameComponent cachedComponent;
 	}
 }

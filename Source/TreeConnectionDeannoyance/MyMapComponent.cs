@@ -27,13 +27,12 @@ namespace Cerespirin.TreeDesireDeannoyance
 				if (InstallBlueprintUtility.ExistingBlueprintFor(thing) == null)
 				{
 					Gizmo gizmo = thing.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
-					MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
 					Designator_Replant designator = (Designator_Replant)gizmo;
 
 					// I *still* can't believe that designators find their owners based on what the player has selected...
 					try
 					{
-						component.designatorOwners.Add(gizmo, thing);
+						MyGameComponent.Cached.designatorOwners.Add(gizmo, thing);
 
 						IEnumerable<IntVec3> cells = GetReplantCells(thing, designator); //t.Map.GetReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
 						if (!cells.Any()) { return; }
@@ -42,7 +41,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 					}
 					finally
 					{
-						component.designatorOwners.Remove(gizmo);
+						MyGameComponent.Cached.designatorOwners.Remove(gizmo);
 					}
 				}
 			}

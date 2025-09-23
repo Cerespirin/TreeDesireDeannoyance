@@ -12,7 +12,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 		{
 			if (!worldView)
 			{
-				row.ToggleableIcon(ref Current.Game.GetComponent<MyGameComponent>().alwaysExtractTrees, ContentFinder<Texture2D>.Get("UI/Designators/ExtractTree"), "TreeDesireDeannoyance_PlaySetting_ToggleExtract".Translate(), SoundDefOf.Mouseover_ButtonToggle);
+				row.ToggleableIcon(ref MyGameComponent.Cached.alwaysExtractTrees, ContentFinder<Texture2D>.Get("UI/Designators/ExtractTree"), "TreeDesireDeannoyance_PlaySetting_ToggleExtract".Translate(), SoundDefOf.Mouseover_ButtonToggle);
 			}
 		}
 	}

@@ -9,9 +9,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public static bool Prefix(ref Thing __result, Gizmo __instance)
 		{
-			MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
-
-			if (component.designatorOwners.TryGetValue(__instance, out Thing owner))
+			if (MyGameComponent.Cached.designatorOwners.TryGetValue(__instance, out Thing owner))
 			{
 				__result = owner;
 				return false;
