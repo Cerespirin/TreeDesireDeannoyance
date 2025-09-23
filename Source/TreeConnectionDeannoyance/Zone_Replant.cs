@@ -65,8 +65,8 @@ namespace Cerespirin.TreeDesireDeannoyance
 			};
 			yield return new Command_Toggle
 			{
-				defaultLabel = "CommandAllowCut".Translate(),
-				defaultDesc = "CommandAllowCutDesc".Translate(),
+				defaultLabel = "TreeDesireDeannoyance_ZoneReplant_AllowCut".Translate(),
+				defaultDesc = "TreeDesireDeannoyance_ZoneReplant_AllowCutDesc".Translate(),
 				icon = Designator_PlantsCut.IconTex,
 				isActive = () => allowCut,
 				toggleAction = delegate ()

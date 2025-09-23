@@ -7,6 +7,8 @@
 	<TreeDesireDeannoyance_ZoneReplant>Replanting zone</TreeDesireDeannoyance_ZoneReplant>
 	<TreeDesireDeannoyance_ZoneReplant_AllowReplant>Allow replant</TreeDesireDeannoyance_ZoneReplant_AllowReplant>
 	<TreeDesireDeannoyance_ZoneReplant_AllowReplantDesc>When disabled, colonists will never replant in this zone. They will still harvest.</TreeDesireDeannoyance_ZoneReplant_AllowReplantDesc>
+	<TreeDesireDeannoyance_ZoneReplant_AllowCut>Allow cutting</TreeDesireDeannoyance_ZoneReplant_AllowCut>
+	<TreeDesireDeannoyance_ZoneReplant_AllowCutDesc>When disabled, colonists will never cut plants in this zone. They will still replant in spaces that are already empty, and harvest plants matching the zone filter.</TreeDesireDeannoyance_ZoneReplant_AllowCutDesc>
 	<TreeDesireDeannoyance_ZoneReplant_AllowHarvest>Allow harvest</TreeDesireDeannoyance_ZoneReplant_AllowHarvest>
 	<TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>When disabled, colonists will never harvest plants in this zone. They will still replant.</TreeDesireDeannoyance_ZoneReplant_AllowHarvestDesc>
 </LanguageData>
