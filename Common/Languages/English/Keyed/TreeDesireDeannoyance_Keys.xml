@@ -3,6 +3,7 @@
 	<TreeDesireDeannoyance_Designator_ReplantZone_Desc>-todo-</TreeDesireDeannoyance_Designator_ReplantZone_Desc>
 	<TreeDesireDeannoyance_ITab_Replant>Replant</TreeDesireDeannoyance_ITab_Replant>
 	<TreeDesireDeannoyance_ITab_Replant_Group>replant</TreeDesireDeannoyance_ITab_Replant_Group>
+	<TreeDesireDeannoyance_PlaySetting_ForageSettings>Forage area settings</TreeDesireDeannoyance_PlaySetting_ForageSettings>
 	<TreeDesireDeannoyance_PlaySetting_ToggleExtract>Always extract trees</TreeDesireDeannoyance_PlaySetting_ToggleExtract>
 	<TreeDesireDeannoyance_ZoneReplant>Replanting zone</TreeDesireDeannoyance_ZoneReplant>
 	<TreeDesireDeannoyance_ZoneReplant_AllowReplant>Allow replant</TreeDesireDeannoyance_ZoneReplant_AllowReplant>
