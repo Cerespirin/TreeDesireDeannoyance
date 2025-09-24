@@ -17,7 +17,7 @@
 	<Operation Class="PatchOperationInsert">
 		<xpath>Defs/DesignationCategoryDef[defName="Zone"]/specialDesignatorClasses/li[text()="Designator_ZoneDelete"]</xpath>
 		<value>
-			<li>Cerespirin.TreeDesireDeannoyance.Designator_ZoneAdd_Replant</li>
+			<li>Cerespirin.TreeDesireDeannoyance.ZoneReplant.Designator_ZoneAdd_Replant</li>
 		</value>
 	</Operation>
 </Patch>

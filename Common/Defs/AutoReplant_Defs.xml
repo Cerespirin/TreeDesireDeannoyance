@@ -2,12 +2,12 @@
 <Defs>
 	<WorkGiverDef ParentName="GrowerHarvest">
 		<defName>TreeDesireDeannoyance_ReplantHarvest</defName>
-		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_ReplantHarvest</giverClass>
+		<giverClass>Cerespirin.TreeDesireDeannoyance.ZoneReplant.WorkGiver_ReplantHarvest</giverClass>
 	</WorkGiverDef>
 
 	<WorkGiverDef ParentName="PlantsCut">
 		<defName>TreeDesireDeannoyance_ReplantClear</defName>
-		<giverClass>Cerespirin.TreeDesireDeannoyance.WorkGiver_ReplantClear</giverClass>
+		<giverClass>Cerespirin.TreeDesireDeannoyance.ZoneReplant.WorkGiver_ReplantClear</giverClass>
 		<scanThings>false</scanThings>
 		<scanCells>true</scanCells>
 	</WorkGiverDef>
