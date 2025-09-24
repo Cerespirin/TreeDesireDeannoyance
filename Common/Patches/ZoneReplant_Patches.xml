@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Patch>
+	<!-- Adds name so it can inherited from. -->
+	<Operation Class="PatchOperationAttributeAdd">
+		<xpath>Defs/WorkGiverDef[defName="GrowerHarvest"]</xpath>
+		<attribute>Name</attribute>
+		<value>GrowerHarvest</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeAdd">
+		<xpath>Defs/WorkGiverDef[defName="PlantsCut"]</xpath>
+		<attribute>Name</attribute>
+		<value>PlantsCut</value>
+	</Operation>
+
+	<!-- Insert our zone designator. -->
+	<Operation Class="PatchOperationInsert">
+		<xpath>Defs/DesignationCategoryDef[defName="Zone"]/specialDesignatorClasses/li[text()="Designator_ZoneDelete"]</xpath>
+		<value>
+			<li>Cerespirin.TreeDesireDeannoyance.ZoneReplant.Designator_ZoneAdd_Replant</li>
+		</value>
+	</Operation>
+</Patch>
