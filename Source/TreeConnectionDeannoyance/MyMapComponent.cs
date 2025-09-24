@@ -1,4 +1,5 @@
-﻿using RimWorld;
+﻿using Cerespirin.TreeDesireDeannoyance.ZoneReplant;
+using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
@@ -15,7 +16,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			if (map.IsHashIntervalTick(2000))
 			{
 				DoAutoReplant();
-				DoForage();
+				//DoForage();
 			}
 		}
 
@@ -26,27 +27,26 @@ namespace Cerespirin.TreeDesireDeannoyance
 				if (InstallBlueprintUtility.ExistingBlueprintFor(thing) == null)
 				{
 					Gizmo gizmo = thing.GetGizmos().First(g => g.GetType() == typeof(Designator_Replant));
-					MyGameComponent component = Current.Game.GetComponent<MyGameComponent>();
 					Designator_Replant designator = (Designator_Replant)gizmo;
 
 					// I *still* can't believe that designators find their owners based on what the player has selected...
 					try
 					{
-						component.designatorOwners.Add(gizmo, thing);
+						MyGameComponent.Cached.designatorOwners.Add(gizmo, thing);
 
-						IEnumerable<IntVec3> cells = GetReplantCells(thing, designator); //t.Map.GetReplantArea().ActiveCells.Where(c1 => designator.CanDesignateCell(c1));
+						IEnumerable<IntVec3> cells = GetReplantCells(thing, designator);
 						if (!cells.Any()) { return; }
 
 						designator.DesignateSingleCell(cells.OrderBy(c2 => c2.DistanceToSquared(thing.Position)).First());
 					}
 					finally
 					{
-						component.designatorOwners.Remove(gizmo);
+						MyGameComponent.Cached.designatorOwners.Remove(gizmo);
 					}
 				}
 			}
 		}
-
+		/*
 		public void DoForage()
 		{
 			foreach (Thing stump in map.listerThings.AllThings.Where(t => (t.def.plant?.isStump ?? false) && (map.GetForageArea()?[t.Position] ?? false)))
@@ -57,11 +57,10 @@ namespace Cerespirin.TreeDesireDeannoyance
 				}
 			}
 		}
-
+		*/
 		private static IEnumerable<IntVec3> GetReplantCells(Thing thing, Designator_Replant designator)
 		{
-			return from Zone_Replant zone in thing.Map.zoneManager.AllZones.OfType<Zone_Replant>().Where(z => z.allowReplant)
-					 where zone.settings.filter.Allows(thing)
+			return from Zone_Replant zone in thing.Map.zoneManager.AllZones.OfType<Zone_Replant>().Where(z => z.allowReplant && z.settings.filter.Allows(thing))
 					 from IntVec3 cell in zone.Cells
 					 where designator.CanDesignateCell(cell)
 					 select cell;

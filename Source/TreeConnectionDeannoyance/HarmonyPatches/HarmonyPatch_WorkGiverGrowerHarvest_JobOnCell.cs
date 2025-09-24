@@ -11,7 +11,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 	{
 		public static void Postfix(ref Job __result)
 		{
-			if (MyHelper.ExtractSetting && __result.def == JobDefOf.Harvest)
+			if (MyGameComponent.Cached.alwaysExtractTrees && __result.def == JobDefOf.Harvest)
 			{
 				// GetTargetQueue cannot return null, but can return an empty list!
 				LocalTargetInfo firstTarget = __result.targetQueueA.FirstOrFallback(null);

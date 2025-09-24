@@ -1,6 +1,6 @@
 ﻿using RimWorld;
 
-namespace Cerespirin.TreeDesireDeannoyance
+namespace Cerespirin.TreeDesireDeannoyance.ZoneReplant
 {
 	public class ITab_Replant : ITab_Storage
 	{

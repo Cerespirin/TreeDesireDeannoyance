@@ -8,15 +8,13 @@ namespace Cerespirin.TreeDesireDeannoyance
 {
 	public static class MyHelper
 	{
-		public static bool ExtractSetting => Current.Game.GetComponent<MyGameComponent>().alwaysExtractTrees;
-
 		public static bool IsRelevantToTreeLovers(this Thing thing) => thing.def.plant.IsTree && thing.def.plant.treeLoversCareIfChopped;
 		public static bool IsRelevantToTreeLovers(this ThingDef def) => def.plant.IsTree && def.plant.treeLoversCareIfChopped;
-		public static Area GetForageArea(this Map map) => map.areaManager.GetLabeled("Forage");
+		//public static Area GetForageArea(this Map map) => map.areaManager.GetLabeled("Forage");
 
 		public static void PossiblyChangeCutJobToHarvest(ref Job job)
 		{
-			if (MyHelper.ExtractSetting && job.def == JobDefOf.CutPlant && job.targetA.Thing.IsRelevantToTreeLovers())
+			if (MyGameComponent.Cached.alwaysExtractTrees && job.def == JobDefOf.CutPlant && job.targetA.Thing.IsRelevantToTreeLovers())
 			{
 				DesignationManager designationManager = job.targetA.Thing.Map.designationManager;
 				if (!designationManager.HasMapDesignationOn(job.targetA.Thing) || designationManager.DesignationOn(job.targetA.Thing, DesignationDefOf.ExtractTree) != null)
