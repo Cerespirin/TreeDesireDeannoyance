@@ -16,7 +16,6 @@ namespace Cerespirin.TreeDesireDeannoyance
 			if (map.IsHashIntervalTick(2000))
 			{
 				DoAutoReplant();
-				//DoForage();
 			}
 		}
 
@@ -46,18 +45,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 				}
 			}
 		}
-		/*
-		public void DoForage()
-		{
-			foreach (Thing stump in map.listerThings.AllThings.Where(t => (t.def.plant?.isStump ?? false) && (map.GetForageArea()?[t.Position] ?? false)))
-			{
-				if (!stump.Map.designationManager.HasMapDesignationOn(stump))
-				{
-					stump.Map.designationManager.AddDesignation(new Designation(stump, DesignationDefOf.CutPlant));
-				}
-			}
-		}
-		*/
+
 		private static IEnumerable<IntVec3> GetReplantCells(Thing thing, Designator_Replant designator)
 		{
 			return from Zone_Replant zone in thing.Map.zoneManager.AllZones.OfType<Zone_Replant>().Where(z => z.allowReplant && z.settings.filter.Allows(thing))
