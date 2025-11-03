@@ -17,7 +17,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 			if (MyGameComponent.Cached.alwaysExtractTrees && job.def == JobDefOf.CutPlant && job.targetA.Thing.IsRelevantToTreeLovers())
 			{
 				DesignationManager designationManager = job.targetA.Thing.Map.designationManager;
-				if (!designationManager.HasMapDesignationOn(job.targetA.Thing) || designationManager.DesignationOn(job.targetA.Thing, DesignationDefOf.ExtractTree) != null)
+				if (designationManager.DesignationOn(job.targetA.Thing, DesignationDefOf.CutPlant) == null)
 				{
 					job.def = JobDefOf.ExtractTree;
 					job.ignoreDesignations = true;

@@ -27,7 +27,7 @@ namespace Cerespirin.TreeDesireDeannoyance
 					else
 					{
 						DesignationManager designationManager = firstTarget.Thing.Map.designationManager;
-						if (!designationManager.HasMapDesignationOn(firstTarget.Thing) || designationManager.DesignationOn(__result.targetA.Thing, DesignationDefOf.ExtractTree) != null)
+						if (!designationManager.HasMapDesignationOn(firstTarget.Thing) || designationManager.DesignationOn(firstTarget.Thing, DesignationDefOf.ExtractTree) != null)
 						{
 							__result.def = JobDefOf.ExtractTree;
 							__result.targetA = firstTarget;
